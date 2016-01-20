@@ -1,0 +1,12 @@
+Options -Indexes +FollowSymLinks
+
+SetEnvIf %{HTTP_HOST} "^192|127|localhost" APP_ENV=development
+
+RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME} -s [OR]
+RewriteCond %{REQUEST_FILENAME} -l [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^.*$ - [NC,L]
+RewriteRule ^.*\.json$ api.php [NC,L]
+RewriteRule ^[^\.]+(?!\.html)$ index.html [NC,L]
