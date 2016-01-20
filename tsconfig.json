@@ -1,6 +1,7 @@
 {
 	"compilerOptions": {
-		"outDir": "./public",
+        "outDir": "./",
+        "rootDir": "./src",
 		"target": "es5",
 		"module": "system",
 		"moduleResolution": "node",
@@ -12,7 +13,6 @@
 		"watch": true
 	},
 	"exclude": [
-		"public",
-		"public_src/node_modules"
+		"node_modules"
 	]
 }
