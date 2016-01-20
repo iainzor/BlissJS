@@ -45,10 +45,9 @@ System.register(["angular2/core", "angular2/http", "./user"], function(exports_1
                         selector: "user-sign-in",
                         template: "\n\t\t<h1>Please Sign In</h1>\n\t\t<form method=\"post\" action=\"sign-in.json\" (submit)=\"submit()\">\n\t\t\t<p>\n\t\t\t\t<label>Email Address</label>\n\t\t\t\t<input type=\"email\" [(ngModel)]=\"user.email\" required>\n\t\t\t</p>\n\t\t\t<p>\n\t\t\t\t<label>Password</label>\n\t\t\t\t<input type=\"password\" [(ngModel)]=\"user.password\" required>\n\t\t\t</p>\n\t\t\t<p>\n\t\t\t\t<input type=\"submit\" value=\"Sign In\">\n\t\t\t</p>\n\t\t</form>\n\t"
                     }), 
-                    __metadata('design:paramtypes', [(typeof (_a = typeof http_1.Http !== 'undefined' && http_1.Http) === 'function' && _a) || Object])
+                    __metadata('design:paramtypes', [http_1.Http])
                 ], SignInComponent);
                 return SignInComponent;
-                var _a;
             })();
             exports_1("SignInComponent", SignInComponent);
         }

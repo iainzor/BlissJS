@@ -34,10 +34,9 @@ System.register(["rxjs/Rx", "angular2/core", "angular2/http"], function(exports_
                     core_1.Component({
                         selector: "[bliss-app]"
                     }), 
-                    __metadata('design:paramtypes', [(typeof (_a = typeof http_1.Http !== 'undefined' && http_1.Http) === 'function' && _a) || Object])
+                    __metadata('design:paramtypes', [http_1.Http])
                 ], BlissApp);
                 return BlissApp;
-                var _a;
             })();
             exports_1("BlissApp", BlissApp);
         }
