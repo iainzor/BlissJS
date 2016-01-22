@@ -6,5 +6,5 @@ export class UserSession
 	public isValid:boolean = false
 	public userId:number
 	public created:number
-	public user:User
+	public user:User = new User()
 }

@@ -1,4 +1,4 @@
-System.register(["rxjs/add/operator/map", "angular2/core"], function(exports_1) {
+System.register(["angular2/core"], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -9,30 +9,31 @@ System.register(["rxjs/add/operator/map", "angular2/core"], function(exports_1) 
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var core_1;
-    var User;
+    var NavComponent;
     return {
         setters:[
-            function (_1) {},
             function (core_1_1) {
                 core_1 = core_1_1;
             }],
         execute: function() {
-            User = (function () {
-                function User() {
-                    this.id = 0;
-                    this.email = null;
-                    this.password = null;
-                    this.displayName = null;
-                    this.isActive = false;
+            NavComponent = (function () {
+                function NavComponent() {
                 }
-                User = __decorate([
-                    core_1.Injectable(), 
+                __decorate([
+                    core_1.Input(), 
+                    __metadata('design:type', Array)
+                ], NavComponent.prototype, "pages", void 0);
+                NavComponent = __decorate([
+                    core_1.Component({
+                        selector: "ui-nav",
+                        template: "[NAV HERE]"
+                    }), 
                     __metadata('design:paramtypes', [])
-                ], User);
-                return User;
+                ], NavComponent);
+                return NavComponent;
             })();
-            exports_1("User", User);
+            exports_1("NavComponent", NavComponent);
         }
     }
 });
-//# sourceMappingURL=user.js.map
+//# sourceMappingURL=nav.js.map

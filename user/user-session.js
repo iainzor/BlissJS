@@ -1,11 +1,16 @@
-System.register([], function(exports_1) {
+System.register(["./user"], function(exports_1) {
+    var user_1;
     var UserSession;
     return {
-        setters:[],
+        setters:[
+            function (user_1_1) {
+                user_1 = user_1_1;
+            }],
         execute: function() {
             UserSession = (function () {
                 function UserSession() {
                     this.isValid = false;
+                    this.user = new user_1.User();
                 }
                 return UserSession;
             })();

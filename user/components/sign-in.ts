@@ -1,8 +1,10 @@
-import {Component, Input, Output, EventEmitter} from "angular2/core"
+import "rxjs/add/operator/map"
+import {Component, Output, EventEmitter} from "angular2/core"
 import {NgForm} from "angular2/common"
 import {Http} from "angular2/http"
-import {User} from "./user"
-import {UserSession} from "./user-session"
+import {BlissService} from "../../bliss/services/bliss"
+import {User} from "../user"
+import {UserSession} from "../user-session"
 
 @Component({
 	selector: "user-sign-in",
@@ -21,13 +23,18 @@ import {UserSession} from "./user-session"
 				<input type="submit" value="Sign In">
 			</p>
 		</form>
-	`
+	`,
+	directives: [NgForm]
 })
 export class SignInComponent
 {
-	@Input("user") user:User
+	@Output() success = new EventEmitter<User>()
 	
-	constructor(private http:Http) {}
+	public user:User = new User()
+	
+	constructor(private http:Http, bliss:BlissService) {
+		this.user = bliss.config.user;
+	}
 	
 	submit() {
 		this.http.post("sign-in.json", JSON.stringify(this.user))
@@ -37,6 +44,7 @@ export class SignInComponent
 					for (var i in session.user) {
 						this.user[i] = session.user[i];
 					}
+					this.success.emit(this.user);
 				}
 			);
 	}
