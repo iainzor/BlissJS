@@ -1,31 +1,48 @@
-import {Component, Input} from "angular2/core"
-import {COMMON_DIRECTIVES} from "angular2/common"
-import {PageInterface} from "../../page/page-interface"
+import {Component, Input, ViewEncapsulation} from "angular2/core"
+import {NgFor} from "angular2/common"
+import {Router, RouterLink, CanActivate, CanDeactivate} from "angular2/router"
+import {NavPageInterface, NavPageComponent} from "./nav-page"
 
 @Component({
 	selector: "ui-nav",
 	template: `
-		<ul>
-			<li *ngFor="#page of visiblePages">
-				<a href="{{page.path}}" title="{{page.title}}">
-					{{page.title}}
-				</a>
-			</li>
-		</ul>
+		<ui-nav-page *ngFor="#page of nav.pages" 
+			[page]="page" 
+			[title]="page.title"
+			[class.active]="page.isActive"
+			[routerLink]="[page.path]">
+		</ui-nav-page>
 	`,
-	directives: [COMMON_DIRECTIVES]
+	directives: [NgFor, NavPageComponent, RouterLink],
+	styleUrls: ["./bliss/ui/components/nav.css"],
+	encapsulation: ViewEncapsulation.None
 })
-export class NavComponent
+export class NavComponent implements CanDeactivate
 {
-	public visiblePages:Array<PageInterface> = [];
+	@Input() nav:Nav = new Nav()
 	
-	@Input() set pages(pages:Array<PageInterface>) {
-		this.visiblePages = [];
+	constructor(private router:Router) {}
+	
+	navigate(page:NavPageInterface) {
+		this.nav.pages.forEach((p) => p.isActive = false);
 		
-		if (pages) {
-			this.visiblePages = pages.filter((page) => {
-				return page.isVisible;
-			});
-		}
+		this.router.navigate([page.path]).then(() => {
+			page.isActive = true;
+		});
 	}
+	
+	routerCanDeactivate(next, prev) {
+		console.log(next, prev);
+		return true;
+	}
+}
+
+export interface NavInterface
+{
+	pages:Array<NavPageInterface>
+}
+
+export class Nav
+{
+	pages:Array<NavPageInterface> = []
 }

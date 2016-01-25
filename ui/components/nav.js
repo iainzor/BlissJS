@@ -1,4 +1,4 @@
-System.register(["angular2/core", "angular2/common"], function(exports_1) {
+System.register(["angular2/core", "angular2/common", "angular2/router", "./nav-page"], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,8 +8,8 @@ System.register(["angular2/core", "angular2/common"], function(exports_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, common_1;
-    var NavComponent;
+    var core_1, common_1, router_1, nav_page_1;
+    var NavComponent, Nav;
     return {
         setters:[
             function (core_1_1) {
@@ -17,40 +17,53 @@ System.register(["angular2/core", "angular2/common"], function(exports_1) {
             },
             function (common_1_1) {
                 common_1 = common_1_1;
+            },
+            function (router_1_1) {
+                router_1 = router_1_1;
+            },
+            function (nav_page_1_1) {
+                nav_page_1 = nav_page_1_1;
             }],
         execute: function() {
             NavComponent = (function () {
-                function NavComponent() {
-                    this.visiblePages = [];
+                function NavComponent(router) {
+                    this.router = router;
+                    this.nav = new Nav();
                 }
-                Object.defineProperty(NavComponent.prototype, "pages", {
-                    set: function (pages) {
-                        this.visiblePages = [];
-                        if (pages) {
-                            this.visiblePages = pages.filter(function (page) {
-                                return page.isVisible;
-                            });
-                        }
-                    },
-                    enumerable: true,
-                    configurable: true
-                });
+                NavComponent.prototype.navigate = function (page) {
+                    this.nav.pages.forEach(function (p) { return p.isActive = false; });
+                    this.router.navigate([page.path]).then(function () {
+                        page.isActive = true;
+                    });
+                };
+                NavComponent.prototype.routerCanDeactivate = function (next, prev) {
+                    console.log(next, prev);
+                    return true;
+                };
                 __decorate([
                     core_1.Input(), 
-                    __metadata('design:type', Array), 
-                    __metadata('design:paramtypes', [Array])
-                ], NavComponent.prototype, "pages", null);
+                    __metadata('design:type', Nav)
+                ], NavComponent.prototype, "nav", void 0);
                 NavComponent = __decorate([
                     core_1.Component({
                         selector: "ui-nav",
-                        template: "\n\t\t<ul>\n\t\t\t<li *ngFor=\"#page of visiblePages\">\n\t\t\t\t<a href=\"{{page.path}}\" title=\"{{page.title}}\">\n\t\t\t\t\t{{page.title}}\n\t\t\t\t</a>\n\t\t\t</li>\n\t\t</ul>\n\t",
-                        directives: [common_1.COMMON_DIRECTIVES]
+                        template: "\n\t\t<ui-nav-page *ngFor=\"#page of nav.pages\" \n\t\t\t[page]=\"page\" \n\t\t\t[title]=\"page.title\"\n\t\t\t[class.active]=\"page.isActive\"\n\t\t\t[routerLink]=\"[page.path]\">\n\t\t</ui-nav-page>\n\t",
+                        directives: [common_1.NgFor, nav_page_1.NavPageComponent, router_1.RouterLink],
+                        styleUrls: ["./bliss/ui/components/nav.css"],
+                        encapsulation: core_1.ViewEncapsulation.None
                     }), 
-                    __metadata('design:paramtypes', [])
+                    __metadata('design:paramtypes', [router_1.Router])
                 ], NavComponent);
                 return NavComponent;
             })();
             exports_1("NavComponent", NavComponent);
+            Nav = (function () {
+                function Nav() {
+                    this.pages = [];
+                }
+                return Nav;
+            })();
+            exports_1("Nav", Nav);
         }
     }
 });

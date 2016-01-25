@@ -1,0 +1,18 @@
+ui-nav-page {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-sizing: border-box;
+	padding: 15px 10px;
+	min-width: 60px;
+	font-size: 16px;
+	cursor: pointer;
+	background-color: rgba(255,255,255,0);
+	color: #999;
+	transition: all .3s ease-in-out;
+}
+ui-nav-page.active,
+ui-nav-page.router-link-active {
+	background-color: rgba(255,255,255,.1);
+	color: #fff;
+}
