@@ -1,4 +1,4 @@
-System.register(["rxjs/add/operator/map", "angular2/core", "angular2/common", "angular2/http", "../../bliss/services/bliss", "../user"], function(exports_1) {
+System.register(["rxjs/add/operator/map", "angular2/core", "angular2/common", "angular2/http", "../../bliss", "../user"], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -31,10 +31,13 @@ System.register(["rxjs/add/operator/map", "angular2/core", "angular2/common", "a
         execute: function() {
             SignInComponent = (function () {
                 function SignInComponent(http, bliss) {
+                    var _this = this;
                     this.http = http;
                     this.success = new core_1.EventEmitter();
                     this.user = new user_1.User();
-                    this.user = bliss.config.user;
+                    bliss.getConfig().then(function (config) {
+                        _this.user = config.user;
+                    });
                 }
                 SignInComponent.prototype.submit = function () {
                     var _this = this;
@@ -57,7 +60,7 @@ System.register(["rxjs/add/operator/map", "angular2/core", "angular2/common", "a
                         template: "\n\t\t<h1>Please Sign In</h1>\n\t\t<form method=\"post\" action=\"sign-in.json\" (submit)=\"submit()\">\n\t\t\t<p>\n\t\t\t\t<label>Email Address</label>\n\t\t\t\t<input type=\"email\" [(ngModel)]=\"user.email\" required>\n\t\t\t</p>\n\t\t\t<p>\n\t\t\t\t<label>Password</label>\n\t\t\t\t<input type=\"password\" [(ngModel)]=\"user.password\" required>\n\t\t\t</p>\n\t\t\t<p>\n\t\t\t\t<input type=\"submit\" value=\"Sign In\">\n\t\t\t</p>\n\t\t</form>\n\t",
                         directives: [common_1.NgForm]
                     }), 
-                    __metadata('design:paramtypes', [http_1.Http, bliss_1.BlissService])
+                    __metadata('design:paramtypes', [http_1.Http, bliss_1.Bliss])
                 ], SignInComponent);
                 return SignInComponent;
             })();

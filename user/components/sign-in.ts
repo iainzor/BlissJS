@@ -2,7 +2,7 @@ import "rxjs/add/operator/map"
 import {Component, Output, EventEmitter} from "angular2/core"
 import {NgForm} from "angular2/common"
 import {Http} from "angular2/http"
-import {BlissService} from "../../bliss/services/bliss"
+import {Bliss} from "../../bliss"
 import {User} from "../user"
 import {UserSession} from "../user-session"
 
@@ -32,8 +32,10 @@ export class SignInComponent
 	
 	public user:User = new User()
 	
-	constructor(private http:Http, bliss:BlissService) {
-		this.user = bliss.config.user;
+	constructor(private http:Http, bliss:Bliss) {
+		bliss.getConfig().then((config) =>  {
+			this.user = config.user;
+		});
 	}
 	
 	submit() {
