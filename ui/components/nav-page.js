@@ -20,9 +20,20 @@ System.register(["angular2/core", "angular2/router"], function(exports_1) {
             }],
         execute: function() {
             NavPageComponent = (function () {
-                function NavPageComponent() {
+                function NavPageComponent(_router) {
+                    this._router = _router;
                     this.page = new NavPage();
                 }
+                NavPageComponent.prototype.onPageClicked = function ($event, page) {
+                    $event.preventDefault();
+                    if (page.path) {
+                        this._router.navigateByUrl(page.path);
+                    }
+                    else {
+                        $event.preventDefault();
+                        console.log(page);
+                    }
+                };
                 __decorate([
                     core_1.Input(), 
                     __metadata('design:type', NavPage)
@@ -31,11 +42,10 @@ System.register(["angular2/core", "angular2/router"], function(exports_1) {
                     core_1.Component({
                         selector: "ui-nav-page",
                         styleUrls: ["./bliss/ui/components/nav-page.css"],
-                        encapsulation: core_1.ViewEncapsulation.None,
-                        directives: [router_1.RouterLink],
-                        template: "\n\t\t<a [routerLink]=\"[page.path]\" [class.active]=\"page.isActive\">\n\t\t\t<i class=\"glyphicon glyphicon-{{page.icon}}\"></i>\n\t\t</a>\n\t"
+                        directives: [],
+                        template: "\n\t\t<a [href]=\"page.path\" [class.active]=\"page.isActive\" (click)=\"onPageClicked($event, page)\">\n\t\t\t<i class=\"glyphicon glyphicon-{{page.icon}}\"></i>\n\t\t</a>\n\t\t<!--<ui-nav *ngIf=\"page.nav\" [nav]=\"page.nav\"></ui-nav>-->\n\t"
                     }), 
-                    __metadata('design:paramtypes', [])
+                    __metadata('design:paramtypes', [router_1.Router])
                 ], NavPageComponent);
                 return NavPageComponent;
             })();

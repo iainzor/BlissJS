@@ -36,10 +36,6 @@ System.register(["angular2/core", "angular2/common", "angular2/router", "./nav-p
                         page.isActive = true;
                     });
                 };
-                NavComponent.prototype.routerCanDeactivate = function (next, prev) {
-                    console.log(next, prev);
-                    return true;
-                };
                 __decorate([
                     core_1.Input(), 
                     __metadata('design:type', Nav)
@@ -49,8 +45,7 @@ System.register(["angular2/core", "angular2/common", "angular2/router", "./nav-p
                         selector: "ui-nav",
                         template: "\n\t\t<ui-nav-page *ngFor=\"#page of nav?.pages\" [page]=\"page\"></ui-nav-page>\n\t",
                         directives: [common_1.NgFor, nav_page_1.NavPageComponent, router_1.RouterLink],
-                        styleUrls: ["./bliss/ui/components/nav.css"],
-                        encapsulation: core_1.ViewEncapsulation.None
+                        styleUrls: ["./bliss/ui/components/nav.css"]
                     }), 
                     __metadata('design:paramtypes', [router_1.Router])
                 ], NavComponent);

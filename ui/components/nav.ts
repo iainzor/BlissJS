@@ -1,6 +1,6 @@
-import {Component, Input, ViewEncapsulation} from "angular2/core"
+import {Component, Input} from "angular2/core"
 import {NgFor} from "angular2/common"
-import {Router, RouterLink, CanActivate, CanDeactivate} from "angular2/router"
+import {Router, RouterLink, OnActivate, CanDeactivate} from "angular2/router"
 import {NavPageInterface, NavPageComponent} from "./nav-page"
 
 @Component({
@@ -9,10 +9,9 @@ import {NavPageInterface, NavPageComponent} from "./nav-page"
 		<ui-nav-page *ngFor="#page of nav?.pages" [page]="page"></ui-nav-page>
 	`,
 	directives: [NgFor, NavPageComponent, RouterLink],
-	styleUrls: ["./bliss/ui/components/nav.css"],
-	encapsulation: ViewEncapsulation.None
+	styleUrls: ["./bliss/ui/components/nav.css"]
 })
-export class NavComponent implements CanDeactivate
+export class NavComponent
 {
 	@Input() nav:Nav = new Nav()
 	
@@ -24,11 +23,6 @@ export class NavComponent implements CanDeactivate
 		this.router.navigate([page.path]).then(() => {
 			page.isActive = true;
 		});
-	}
-	
-	routerCanDeactivate(next, prev) {
-		console.log(next, prev);
-		return true;
 	}
 }
 
