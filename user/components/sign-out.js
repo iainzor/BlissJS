@@ -25,14 +25,22 @@ System.register(["angular2/core", "../user", "../services/user"], function(expor
             SignOutComponent = (function () {
                 function SignOutComponent(userService) {
                     this.userService = userService;
+                    this.success = new core_1.EventEmitter();
                 }
                 SignOutComponent.prototype.signOut = function () {
-                    this.userService.signOut(this.user);
+                    var _this = this;
+                    this.userService.signOut(this.user).then(function () {
+                        _this.success.emit(_this.user);
+                    });
                 };
                 __decorate([
                     core_1.Input(), 
                     __metadata('design:type', user_1.User)
                 ], SignOutComponent.prototype, "user", void 0);
+                __decorate([
+                    core_1.Output(), 
+                    __metadata('design:type', Object)
+                ], SignOutComponent.prototype, "success", void 0);
                 SignOutComponent = __decorate([
                     core_1.Component({
                         selector: "user-sign-out",

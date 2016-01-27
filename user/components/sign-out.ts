@@ -1,4 +1,4 @@
-import {Component, Input} from "angular2/core"
+import {Component, Input, Output, EventEmitter} from "angular2/core"
 import {User} from "../user"
 import {UserService} from "../services/user"
 
@@ -11,11 +11,14 @@ import {UserService} from "../services/user"
 })
 export class SignOutComponent
 {
-	@Input() user:User
+	@Input() user:User;
+	@Output() success = new EventEmitter<User>();
 	
 	constructor(private userService:UserService) {}
 	
 	signOut() {
-		this.userService.signOut(this.user);
+		this.userService.signOut(this.user).then(() => {
+			this.success.emit(this.user);
+		});
 	}
 }

@@ -6,12 +6,7 @@ import {NavPageInterface, NavPageComponent} from "./nav-page"
 @Component({
 	selector: "ui-nav",
 	template: `
-		<ui-nav-page *ngFor="#page of nav.pages" 
-			[page]="page" 
-			[title]="page.title"
-			[class.active]="page.isActive"
-			[routerLink]="[page.path]">
-		</ui-nav-page>
+		<ui-nav-page *ngFor="#page of nav?.pages" [page]="page"></ui-nav-page>
 	`,
 	directives: [NgFor, NavPageComponent, RouterLink],
 	styleUrls: ["./bliss/ui/components/nav.css"],

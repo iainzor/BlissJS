@@ -47,7 +47,7 @@ System.register(["angular2/core", "angular2/common", "angular2/router", "./nav-p
                 NavComponent = __decorate([
                     core_1.Component({
                         selector: "ui-nav",
-                        template: "\n\t\t<ui-nav-page *ngFor=\"#page of nav.pages\" \n\t\t\t[page]=\"page\" \n\t\t\t[title]=\"page.title\"\n\t\t\t[class.active]=\"page.isActive\"\n\t\t\t[routerLink]=\"[page.path]\">\n\t\t</ui-nav-page>\n\t",
+                        template: "\n\t\t<ui-nav-page *ngFor=\"#page of nav?.pages\" [page]=\"page\"></ui-nav-page>\n\t",
                         directives: [common_1.NgFor, nav_page_1.NavPageComponent, router_1.RouterLink],
                         styleUrls: ["./bliss/ui/components/nav.css"],
                         encapsulation: core_1.ViewEncapsulation.None
