@@ -3,10 +3,6 @@
 	align-items: center; 
 	flex-direction: column;
 	background-color: #222; 
-	position: fixed;
-	top: 0;
-	left: 0;
-	height: 100%;
 	padding: 10px 0;
 	box-shadow: 0 0 15px rgba(0,0,0,.5);
 	z-index: 1000;

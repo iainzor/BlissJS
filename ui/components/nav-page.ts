@@ -7,15 +7,14 @@ import {Nav, NavComponent} from "./nav"
 	styleUrls: ["./bliss/ui/components/nav-page.css"],
 	directives: [(forwardRef(() => NavComponent))],
 	template: `
-		<a [href]="page.path || ''" [class.active]="page.isActive" (click)="onPageClicked($event, page)">
-			<i class="glyphicon glyphicon-{{page.icon}}"></i>
+		<a [href]="page?.path || ''" [title]="page?.title" [class.active]="page?.isActive" (click)="onPageClicked($event, page)">
+			<i class="glyphicon glyphicon-{{page?.icon}}"></i>
 		</a>
-		<ui-nav [class.visible]="page.isActive" *ngIf="page.nav" [nav]="page.nav"></ui-nav>
 	`
 })
 export class NavPageComponent
 {
-	@Input() page:NavPage = new NavPage();
+	@Input() page:NavPage;
 	
 	constructor(private _router:Router) {}
 	
@@ -25,9 +24,7 @@ export class NavPageComponent
 		if (page.path) {
 			this._router.navigateByUrl(page.path);
 		} else {
-			$event.preventDefault();
 			page.isActive = !page.isActive;
-			console.log(page);
 		}
 	}
 }
