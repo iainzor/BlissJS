@@ -1,16 +1,16 @@
-import {Component, Input, ViewEncapsulation} from "angular2/core"
+import {Component, Input, forwardRef} from "angular2/core"
 import {Router, RouterLink} from "angular2/router"
 import {Nav, NavComponent} from "./nav"
 
 @Component({
 	selector: "ui-nav-page",
 	styleUrls: ["./bliss/ui/components/nav-page.css"],
-	directives: [],
+	directives: [(forwardRef(() => NavComponent))],
 	template: `
-		<a [href]="page.path" [class.active]="page.isActive" (click)="onPageClicked($event, page)">
+		<a [href]="page.path || ''" [class.active]="page.isActive" (click)="onPageClicked($event, page)">
 			<i class="glyphicon glyphicon-{{page.icon}}"></i>
 		</a>
-		<!--<ui-nav *ngIf="page.nav" [nav]="page.nav"></ui-nav>-->
+		<ui-nav [class.visible]="page.isActive" *ngIf="page.nav" [nav]="page.nav"></ui-nav>
 	`
 })
 export class NavPageComponent
@@ -26,6 +26,7 @@ export class NavPageComponent
 			this._router.navigateByUrl(page.path);
 		} else {
 			$event.preventDefault();
+			page.isActive = !page.isActive;
 			console.log(page);
 		}
 	}
