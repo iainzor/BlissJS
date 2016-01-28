@@ -1,4 +1,4 @@
-System.register(["angular2/core", "angular2/router"], function(exports_1) {
+System.register(["angular2/core", "angular2/router", "./nav"], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +8,7 @@ System.register(["angular2/core", "angular2/router"], function(exports_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1;
+    var core_1, router_1, nav_1;
     var NavPageComponent, NavPage;
     return {
         setters:[
@@ -17,12 +17,14 @@ System.register(["angular2/core", "angular2/router"], function(exports_1) {
             },
             function (router_1_1) {
                 router_1 = router_1_1;
+            },
+            function (nav_1_1) {
+                nav_1 = nav_1_1;
             }],
         execute: function() {
             NavPageComponent = (function () {
                 function NavPageComponent(_router) {
                     this._router = _router;
-                    this.page = new NavPage();
                 }
                 NavPageComponent.prototype.onPageClicked = function ($event, page) {
                     $event.preventDefault();
@@ -30,8 +32,7 @@ System.register(["angular2/core", "angular2/router"], function(exports_1) {
                         this._router.navigateByUrl(page.path);
                     }
                     else {
-                        $event.preventDefault();
-                        console.log(page);
+                        page.isActive = !page.isActive;
                     }
                 };
                 __decorate([
@@ -42,8 +43,8 @@ System.register(["angular2/core", "angular2/router"], function(exports_1) {
                     core_1.Component({
                         selector: "ui-nav-page",
                         styleUrls: ["./bliss/ui/components/nav-page.css"],
-                        directives: [],
-                        template: "\n\t\t<a [href]=\"page.path\" [class.active]=\"page.isActive\" (click)=\"onPageClicked($event, page)\">\n\t\t\t<i class=\"glyphicon glyphicon-{{page.icon}}\"></i>\n\t\t</a>\n\t\t<!--<ui-nav *ngIf=\"page.nav\" [nav]=\"page.nav\"></ui-nav>-->\n\t"
+                        directives: [(core_1.forwardRef(function () { return nav_1.NavComponent; }))],
+                        template: "\n\t\t<a [href]=\"page?.path || ''\" [title]=\"page?.title\" [class.active]=\"page?.isActive\" (click)=\"onPageClicked($event, page)\">\n\t\t\t<i class=\"glyphicon glyphicon-{{page?.icon}}\"></i>\n\t\t</a>\n\t"
                     }), 
                     __metadata('design:paramtypes', [router_1.Router])
                 ], NavPageComponent);

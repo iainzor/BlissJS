@@ -7,7 +7,7 @@
 		font-size: 15px;
 		transition: all .3s ease-in-out;
 	}
-	:host.active > a ,
+	:host > a.active,
 	:host > a.router-link-active {
 		opacity: 1;
 	}

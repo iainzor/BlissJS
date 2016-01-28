@@ -27,14 +27,26 @@ System.register(["angular2/core", "angular2/common", "angular2/router", "./nav-p
         execute: function() {
             NavComponent = (function () {
                 function NavComponent(router) {
+                    var _this = this;
                     this.router = router;
-                    this.nav = new Nav();
-                }
-                NavComponent.prototype.navigate = function (page) {
-                    this.nav.pages.forEach(function (p) { return p.isActive = false; });
-                    this.router.navigate([page.path]).then(function () {
-                        page.isActive = true;
+                    router.subscribe(function (path) {
+                        _this.activatePage(path);
                     });
+                }
+                NavComponent.prototype.ngOnChanges = function (changes) {
+                    var _this = this;
+                    setTimeout(function () {
+                        _this.activatePage(_this.router.lastNavigationAttempt);
+                    }, 0);
+                };
+                NavComponent.prototype.activatePage = function (path) {
+                    var a = path ? path.replace(/^\/?(.*)$/i, "$1") : "";
+                    if (this.nav && this.nav.pages) {
+                        this.nav.pages.forEach(function (page) {
+                            var b = page.path ? page.path.replace(/^\/?(.*)$/i, "$1") : null;
+                            page.isActive = (a === b);
+                        });
+                    }
                 };
                 __decorate([
                     core_1.Input(), 
@@ -43,7 +55,7 @@ System.register(["angular2/core", "angular2/common", "angular2/router", "./nav-p
                 NavComponent = __decorate([
                     core_1.Component({
                         selector: "ui-nav",
-                        template: "\n\t\t<ui-nav-page *ngFor=\"#page of nav?.pages\" [page]=\"page\"></ui-nav-page>\n\t",
+                        template: "\n\t\t<ui-nav-page \n\t\t\t*ngFor=\"#page of nav?.pages\" \n\t\t\t[page]=\"page\"\n\t\t\t(activate)=\"onActivate(page)\">\n\t\t</ui-nav-page>\n\t",
                         directives: [common_1.NgFor, nav_page_1.NavPageComponent, router_1.RouterLink],
                         styleUrls: ["./bliss/ui/components/nav.css"]
                     }), 

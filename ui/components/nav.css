@@ -3,10 +3,19 @@
 	align-items: center; 
 	flex-direction: column;
 	background-color: #222; 
-	position: fixed;
-	top: 0;
-	left: 0;
-	height: 100%;
 	padding: 10px 0;
 	box-shadow: 0 0 15px rgba(0,0,0,.5);
+	z-index: 1000;
+}
+:host > ui-nav-page > ui-nav {
+	position: absolute;
+	left: 0;
+	visibility: hidden;
+	box-shadow: none;
+	background-color: #333;
+	transition: all .3s ease-in-out;
+}
+:host > ui-nav-page > ui-nav.visible {
+	left: 100%;
+	visibility: visible;
 }
