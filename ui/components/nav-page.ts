@@ -8,7 +8,7 @@ import {Nav, NavComponent} from "./nav"
 	directives: [(forwardRef(() => NavComponent))],
 	template: `
 		<a [href]="page?.path || ''" [title]="page?.title" [class.active]="page?.isActive" (click)="onPageClicked($event, page)">
-			<i class="glyphicon glyphicon-{{page?.icon}}"></i>
+			<i class="material-icons">{{page?.icon}}</i>
 		</a>
 	`
 })
@@ -21,7 +21,7 @@ export class NavPageComponent
 	onPageClicked($event:MouseEvent, page:NavPageInterface) {
 		$event.preventDefault();
 		
-		if (page.path) {
+		if ((typeof page.path) !== "undefined") {
 			this._router.navigateByUrl(page.path);
 		} else {
 			page.isActive = !page.isActive;

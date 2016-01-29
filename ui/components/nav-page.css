@@ -1,11 +1,14 @@
 
 	:host > a {
-		display: block;
+		display: flex;
+		justify-content: center;
+		align-content: center;
 		padding: 10px 20px;
 		color: #fff;
 		opacity: .75;
 		font-size: 15px;
 		transition: all .3s ease-in-out;
+		text-decoration: none;
 	}
 	:host > a.active,
 	:host > a.router-link-active {

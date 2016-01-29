@@ -23,6 +23,7 @@ export class BlockComponent
 		this._changeZClass();
 	}
 	
+	
 	private _changeZClass() {
 		let el:HTMLElement = this._el.nativeElement;
 		let classList = Array.prototype.slice.apply(el.classList);

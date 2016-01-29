@@ -28,7 +28,7 @@ System.register(["angular2/core", "angular2/router", "./nav"], function(exports_
                 }
                 NavPageComponent.prototype.onPageClicked = function ($event, page) {
                     $event.preventDefault();
-                    if (page.path) {
+                    if ((typeof page.path) !== "undefined") {
                         this._router.navigateByUrl(page.path);
                     }
                     else {
@@ -44,7 +44,7 @@ System.register(["angular2/core", "angular2/router", "./nav"], function(exports_
                         selector: "ui-nav-page",
                         styleUrls: ["./bliss/ui/components/nav-page.css"],
                         directives: [(core_1.forwardRef(function () { return nav_1.NavComponent; }))],
-                        template: "\n\t\t<a [href]=\"page?.path || ''\" [title]=\"page?.title\" [class.active]=\"page?.isActive\" (click)=\"onPageClicked($event, page)\">\n\t\t\t<i class=\"glyphicon glyphicon-{{page?.icon}}\"></i>\n\t\t</a>\n\t"
+                        template: "\n\t\t<a [href]=\"page?.path || ''\" [title]=\"page?.title\" [class.active]=\"page?.isActive\" (click)=\"onPageClicked($event, page)\">\n\t\t\t<i class=\"material-icons\">{{page?.icon}}</i>\n\t\t</a>\n\t"
                     }), 
                     __metadata('design:paramtypes', [router_1.Router])
                 ], NavPageComponent);

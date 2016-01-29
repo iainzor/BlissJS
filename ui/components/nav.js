@@ -40,11 +40,9 @@ System.register(["angular2/core", "angular2/common", "angular2/router", "./nav-p
                     }, 0);
                 };
                 NavComponent.prototype.activatePage = function (path) {
-                    var a = path ? path.replace(/^\/?(.*)$/i, "$1") : "";
                     if (this.nav && this.nav.pages) {
                         this.nav.pages.forEach(function (page) {
-                            var b = page.path ? page.path.replace(/^\/?(.*)$/i, "$1") : null;
-                            page.isActive = (a === b);
+                            page.isActive = (path === page.path);
                         });
                     }
                 };
@@ -57,7 +55,9 @@ System.register(["angular2/core", "angular2/common", "angular2/router", "./nav-p
                         selector: "ui-nav",
                         template: "\n\t\t<ui-nav-page \n\t\t\t*ngFor=\"#page of nav?.pages\" \n\t\t\t[page]=\"page\"\n\t\t\t(activate)=\"onActivate(page)\">\n\t\t</ui-nav-page>\n\t",
                         directives: [common_1.NgFor, nav_page_1.NavPageComponent, router_1.RouterLink],
-                        styleUrls: ["./bliss/ui/components/nav.css"]
+                        styleUrls: [
+                            "./bliss/ui/components/nav.css"
+                        ]
                     }), 
                     __metadata('design:paramtypes', [router_1.Router])
                 ], NavComponent);
