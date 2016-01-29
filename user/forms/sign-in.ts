@@ -7,26 +7,25 @@ import {User} from "../user"
 import {UserSession} from "../user-session"
 
 @Component({
-	selector: "user-sign-in",
+	selector: "user-sign-in-form",
 	template: `
-		<h1>Please Sign In</h1>
-		<form method="post" action="sign-in.json" (submit)="submit()">
-			<p>
+		<form (submit)="submit()">
+			<div class="form-group">
 				<label>Email Address</label>
-				<input type="email" [(ngModel)]="user.email" required>
-			</p>
-			<p>
+				<input class="form-control" type="email" [(ngModel)]="user.email" required>
+			</div>
+			<div class="form-group">
 				<label>Password</label>
-				<input type="password" [(ngModel)]="user.password" required>
-			</p>
-			<p>
-				<input type="submit" value="Sign In">
-			</p>
+				<input class="form-control" type="password" [(ngModel)]="user.password" required>
+			</div>
+			<div class="form-group">
+				<input class="btn btn-primary btn-block" type="submit" value="Sign In">
+			</div>
 		</form>
 	`,
 	directives: [NgForm]
 })
-export class SignInComponent
+export class SignInForm
 {
 	@Output() success = new EventEmitter<User>()
 	

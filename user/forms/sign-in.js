@@ -9,7 +9,7 @@ System.register(["rxjs/add/operator/map", "angular2/core", "angular2/common", "a
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var core_1, common_1, http_1, bliss_1, user_1;
-    var SignInComponent;
+    var SignInForm;
     return {
         setters:[
             function (_1) {},
@@ -29,8 +29,8 @@ System.register(["rxjs/add/operator/map", "angular2/core", "angular2/common", "a
                 user_1 = user_1_1;
             }],
         execute: function() {
-            SignInComponent = (function () {
-                function SignInComponent(http, bliss) {
+            SignInForm = (function () {
+                function SignInForm(http, bliss) {
                     var _this = this;
                     this.http = http;
                     this.success = new core_1.EventEmitter();
@@ -39,7 +39,7 @@ System.register(["rxjs/add/operator/map", "angular2/core", "angular2/common", "a
                         _this.user = config.user;
                     });
                 }
-                SignInComponent.prototype.submit = function () {
+                SignInForm.prototype.submit = function () {
                     var _this = this;
                     this.http.post("sign-in.json", JSON.stringify(this.user))
                         .map(function (res) { return res.json(); })
@@ -53,18 +53,18 @@ System.register(["rxjs/add/operator/map", "angular2/core", "angular2/common", "a
                 __decorate([
                     core_1.Output(), 
                     __metadata('design:type', Object)
-                ], SignInComponent.prototype, "success", void 0);
-                SignInComponent = __decorate([
+                ], SignInForm.prototype, "success", void 0);
+                SignInForm = __decorate([
                     core_1.Component({
-                        selector: "user-sign-in",
-                        template: "\n\t\t<h1>Please Sign In</h1>\n\t\t<form method=\"post\" action=\"sign-in.json\" (submit)=\"submit()\">\n\t\t\t<p>\n\t\t\t\t<label>Email Address</label>\n\t\t\t\t<input type=\"email\" [(ngModel)]=\"user.email\" required>\n\t\t\t</p>\n\t\t\t<p>\n\t\t\t\t<label>Password</label>\n\t\t\t\t<input type=\"password\" [(ngModel)]=\"user.password\" required>\n\t\t\t</p>\n\t\t\t<p>\n\t\t\t\t<input type=\"submit\" value=\"Sign In\">\n\t\t\t</p>\n\t\t</form>\n\t",
+                        selector: "user-sign-in-form",
+                        template: "\n\t\t<form (submit)=\"submit()\">\n\t\t\t<div class=\"form-group\">\n\t\t\t\t<label>Email Address</label>\n\t\t\t\t<input class=\"form-control\" type=\"email\" [(ngModel)]=\"user.email\" required>\n\t\t\t</div>\n\t\t\t<div class=\"form-group\">\n\t\t\t\t<label>Password</label>\n\t\t\t\t<input class=\"form-control\" type=\"password\" [(ngModel)]=\"user.password\" required>\n\t\t\t</div>\n\t\t\t<div class=\"form-group\">\n\t\t\t\t<input class=\"btn btn-primary btn-block\" type=\"submit\" value=\"Sign In\">\n\t\t\t</div>\n\t\t</form>\n\t",
                         directives: [common_1.NgForm]
                     }), 
                     __metadata('design:paramtypes', [http_1.Http, bliss_1.Bliss])
-                ], SignInComponent);
-                return SignInComponent;
+                ], SignInForm);
+                return SignInForm;
             })();
-            exports_1("SignInComponent", SignInComponent);
+            exports_1("SignInForm", SignInForm);
         }
     }
 });
