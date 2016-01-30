@@ -17,39 +17,33 @@ System.register(["angular2/core"], function(exports_1) {
             }],
         execute: function() {
             BlockComponent = (function () {
-                function BlockComponent(_el) {
-                    this._el = _el;
-                    this._z = 1;
-                    this._changeZClass();
+                function BlockComponent(_elRef) {
+                    this._elRef = _elRef;
                 }
-                Object.defineProperty(BlockComponent.prototype, "z", {
-                    set: function (z) {
-                        this._z = z;
-                        this._changeZClass();
-                    },
-                    enumerable: true,
-                    configurable: true
-                });
-                BlockComponent.prototype._changeZClass = function () {
-                    var el = this._el.nativeElement;
+                BlockComponent.prototype.ngOnChanges = function (changes) {
+                    if (changes.z) {
+                        this._changeZ(changes.z.currentValue);
+                    }
+                };
+                BlockComponent.prototype._changeZ = function (z) {
+                    var el = this._elRef.nativeElement;
                     var classList = Array.prototype.slice.apply(el.classList);
                     classList.forEach(function (className) {
                         if (className.match(/^z-/)) {
                             el.classList.remove(className);
                         }
                     });
-                    el.classList.add("z-" + this._z);
+                    el.classList.add("z-" + z);
                 };
                 __decorate([
                     core_1.Input(), 
-                    __metadata('design:type', Number), 
-                    __metadata('design:paramtypes', [Number])
-                ], BlockComponent.prototype, "z", null);
+                    __metadata('design:type', Number)
+                ], BlockComponent.prototype, "z", void 0);
                 BlockComponent = __decorate([
                     core_1.Component({
                         selector: "ui-block",
-                        template: "\n\t\t<ng-content select=\"header\"></ng-content>\n\t\t<section class=\"content\">\n\t\t\t<ng-content></ng-content>\n\t\t</section>\n\t",
-                        styleUrls: ["./bliss/ui/components/block.css"]
+                        styleUrls: ["./bliss/ui/components/block.css"],
+                        template: "\n\t\t<ng-content select=\"header\"></ng-content>\n\t\t<section class=\"content\">\n\t\t\t<ng-content></ng-content>\n\t\t</section>\n\t"
                     }), 
                     __metadata('design:paramtypes', [core_1.ElementRef])
                 ], BlockComponent);

@@ -1,4 +1,4 @@
-System.register(["angular2/core", "angular2/common", "angular2/router", "./nav-page"], function(exports_1) {
+System.register(["angular2/core", "angular2/common", "./nav-page"], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +8,7 @@ System.register(["angular2/core", "angular2/common", "angular2/router", "./nav-p
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, common_1, router_1, nav_page_1;
+    var core_1, common_1, nav_page_1;
     var NavComponent, Nav;
     return {
         setters:[
@@ -18,34 +18,13 @@ System.register(["angular2/core", "angular2/common", "angular2/router", "./nav-p
             function (common_1_1) {
                 common_1 = common_1_1;
             },
-            function (router_1_1) {
-                router_1 = router_1_1;
-            },
             function (nav_page_1_1) {
                 nav_page_1 = nav_page_1_1;
             }],
         execute: function() {
             NavComponent = (function () {
-                function NavComponent(router) {
-                    var _this = this;
-                    this.router = router;
-                    router.subscribe(function (path) {
-                        _this.activatePage(path);
-                    });
+                function NavComponent() {
                 }
-                NavComponent.prototype.ngOnChanges = function (changes) {
-                    var _this = this;
-                    setTimeout(function () {
-                        _this.activatePage(_this.router.lastNavigationAttempt);
-                    }, 0);
-                };
-                NavComponent.prototype.activatePage = function (path) {
-                    if (this.nav && this.nav.pages) {
-                        this.nav.pages.forEach(function (page) {
-                            page.isActive = (path === page.path);
-                        });
-                    }
-                };
                 __decorate([
                     core_1.Input(), 
                     __metadata('design:type', Nav)
@@ -54,12 +33,12 @@ System.register(["angular2/core", "angular2/common", "angular2/router", "./nav-p
                     core_1.Component({
                         selector: "ui-nav",
                         template: "\n\t\t<ui-nav-page \n\t\t\t*ngFor=\"#page of nav?.pages\" \n\t\t\t[page]=\"page\"\n\t\t\t(activate)=\"onActivate(page)\">\n\t\t</ui-nav-page>\n\t",
-                        directives: [common_1.NgFor, nav_page_1.NavPageComponent, router_1.RouterLink],
+                        directives: [common_1.NgFor, nav_page_1.NavPageComponent],
                         styleUrls: [
                             "./bliss/ui/components/nav.css"
                         ]
                     }), 
-                    __metadata('design:paramtypes', [router_1.Router])
+                    __metadata('design:paramtypes', [])
                 ], NavComponent);
                 return NavComponent;
             })();

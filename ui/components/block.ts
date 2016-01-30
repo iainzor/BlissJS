@@ -1,31 +1,29 @@
-import {Component, Input, ElementRef} from "angular2/core"
+import {Component, Input, OnChanges, ElementRef} from "angular2/core"
 
 @Component({
 	selector: "ui-block",
+	styleUrls: ["./bliss/ui/components/block.css"],
 	template: `
 		<ng-content select="header"></ng-content>
 		<section class="content">
 			<ng-content></ng-content>
 		</section>
-	`,
-	styleUrls: ["./bliss/ui/components/block.css"]
+	`
 })
-export class BlockComponent
+export class BlockComponent implements OnChanges
 {
-	private _z:number = 1;
+	@Input() z:number;
 	
-	@Input() set z(z:number) {
-		this._z = z;
-		this._changeZClass();
+	constructor(private _elRef:ElementRef) {}
+	
+	ngOnChanges(changes) {
+		if (changes.z) {
+			this._changeZ(changes.z.currentValue);
+		}
 	}
 	
-	constructor(private _el:ElementRef) {
-		this._changeZClass();
-	}
-	
-	
-	private _changeZClass() {
-		let el:HTMLElement = this._el.nativeElement;
+	private _changeZ(z:number) {
+		let el:HTMLElement = this._elRef.nativeElement;
 		let classList = Array.prototype.slice.apply(el.classList);
 		
 		classList.forEach((className:string) => {
@@ -33,6 +31,6 @@ export class BlockComponent
 				el.classList.remove(className);
 			}
 		});
-		el.classList.add("z-"+ this._z);
+		el.classList.add("z-"+ z);
 	}
 }
