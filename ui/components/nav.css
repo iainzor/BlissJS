@@ -2,7 +2,7 @@
 	display: flex;
 	align-items: center; 
 	flex-direction: column;
-	background-color: #222; 
+	background-color: #212121; 
 	padding: 10px 0;
 	box-shadow: 0 0 15px rgba(0,0,0,.5);
 	z-index: 1000;
@@ -12,7 +12,7 @@
 	left: 0;
 	visibility: hidden;
 	box-shadow: none;
-	background-color: #333;
+	background-color: #222;
 	transition: all .3s ease-in-out;
 }
 :host > ui-nav-page > ui-nav.visible {

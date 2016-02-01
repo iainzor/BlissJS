@@ -1,12 +1,25 @@
 :host {
-	display: block;
+	display: flex;
+	flex-direction: column;
 	border-radius: 3px;
 	background-color: #fff;
 	transition: all .3s ease-in-out;
 }
-
-:host > section,
-:host > header {
-	border-bottom: 1px solid rgba(0,0,0,.05);
-	padding: 20px;
-}
+	:host > section,
+	:host > header,
+	:host > footer {
+		border-bottom: 1px solid rgba(0,0,0,.05);
+		padding: 20px;
+	}
+	
+	:host > :last-child {
+		border-bottom: 0;
+	}
+	
+	:host > section.content {
+		flex-grow: 1;
+	}
+	
+	:host > [compact] {
+		padding: 10px;
+	}

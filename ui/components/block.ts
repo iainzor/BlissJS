@@ -8,13 +8,16 @@ import {Component, Input, OnChanges, ElementRef} from "angular2/core"
 		<section class="content">
 			<ng-content></ng-content>
 		</section>
+		<ng-content select="footer"></ng-content>
 	`
 })
 export class BlockComponent implements OnChanges
 {
-	@Input() z:number;
+	@Input() z:number = 1;
 	
-	constructor(private _elRef:ElementRef) {}
+	constructor(private _elRef:ElementRef) {
+		this._changeZ(1);
+	}
 	
 	ngOnChanges(changes) {
 		if (changes.z) {

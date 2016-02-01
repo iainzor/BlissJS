@@ -19,6 +19,8 @@ System.register(["angular2/core"], function(exports_1) {
             BlockComponent = (function () {
                 function BlockComponent(_elRef) {
                     this._elRef = _elRef;
+                    this.z = 1;
+                    this._changeZ(1);
                 }
                 BlockComponent.prototype.ngOnChanges = function (changes) {
                     if (changes.z) {
@@ -43,7 +45,7 @@ System.register(["angular2/core"], function(exports_1) {
                     core_1.Component({
                         selector: "ui-block",
                         styleUrls: ["./bliss/ui/components/block.css"],
-                        template: "\n\t\t<ng-content select=\"header\"></ng-content>\n\t\t<section class=\"content\">\n\t\t\t<ng-content></ng-content>\n\t\t</section>\n\t"
+                        template: "\n\t\t<ng-content select=\"header\"></ng-content>\n\t\t<section class=\"content\">\n\t\t\t<ng-content></ng-content>\n\t\t</section>\n\t\t<ng-content select=\"footer\"></ng-content>\n\t"
                     }), 
                     __metadata('design:paramtypes', [core_1.ElementRef])
                 ], BlockComponent);
