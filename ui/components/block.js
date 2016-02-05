@@ -20,6 +20,7 @@ System.register(["angular2/core"], function(exports_1) {
                 function BlockComponent(_elRef) {
                     this._elRef = _elRef;
                     this.z = 1;
+                    this.compact = false;
                     this._changeZ(1);
                 }
                 BlockComponent.prototype.ngOnChanges = function (changes) {
@@ -41,11 +42,15 @@ System.register(["angular2/core"], function(exports_1) {
                     core_1.Input(), 
                     __metadata('design:type', Number)
                 ], BlockComponent.prototype, "z", void 0);
+                __decorate([
+                    core_1.Input(), 
+                    __metadata('design:type', Boolean)
+                ], BlockComponent.prototype, "compact", void 0);
                 BlockComponent = __decorate([
                     core_1.Component({
                         selector: "ui-block",
                         styleUrls: ["./bliss/ui/components/block.css"],
-                        template: "\n\t\t<ng-content select=\"header\"></ng-content>\n\t\t<section class=\"content\">\n\t\t\t<ng-content></ng-content>\n\t\t</section>\n\t\t<ng-content select=\"footer\"></ng-content>\n\t"
+                        template: "\n\t\t<ng-content select=\"header\"></ng-content>\n\t\t<section class=\"content\" [class.compact]=\"compact!==false\">\n\t\t\t<ng-content></ng-content>\n\t\t</section>\n\t\t<ng-content select=\"footer\"></ng-content>\n\t"
                     }), 
                     __metadata('design:paramtypes', [core_1.ElementRef])
                 ], BlockComponent);

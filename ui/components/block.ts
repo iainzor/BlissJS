@@ -5,7 +5,7 @@ import {Component, Input, OnChanges, ElementRef} from "angular2/core"
 	styleUrls: ["./bliss/ui/components/block.css"],
 	template: `
 		<ng-content select="header"></ng-content>
-		<section class="content">
+		<section class="content" [class.compact]="compact!==false">
 			<ng-content></ng-content>
 		</section>
 		<ng-content select="footer"></ng-content>
@@ -14,6 +14,7 @@ import {Component, Input, OnChanges, ElementRef} from "angular2/core"
 export class BlockComponent implements OnChanges
 {
 	@Input() z:number = 1;
+	@Input() compact:boolean = false;
 	
 	constructor(private _elRef:ElementRef) {
 		this._changeZ(1);

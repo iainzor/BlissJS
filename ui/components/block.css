@@ -20,6 +20,7 @@
 		flex-grow: 1;
 	}
 	
-	:host > [compact] {
+	:host > [compact],
+	:host > .content.compact {
 		padding: 10px;
 	}

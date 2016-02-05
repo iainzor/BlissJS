@@ -1,0 +1,9 @@
+:host {
+	display: flex;
+	flex-grow: 1;
+}
+
+:host([row]) { flex-direction: row; }
+:host([row-reverse]) { flex-direction: row-reverse; }
+:host([column]) { flex-direction: column; }
+:host([column-reverse]) { flex-direction: column-reverse; }

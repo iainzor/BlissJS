@@ -1,18 +1,27 @@
 import {Component, Input, OnChanges} from "angular2/core"
-import {NgFor} from "angular2/common"
+import {CORE_DIRECTIVES} from "angular2/common"
 import {Router, RouterLink} from "angular2/router"
 import {NavPageInterface, NavPageComponent} from "./nav-page"
 
 @Component({
 	selector: "ui-nav",
 	template: `
-		<ui-nav-page 
-			*ngFor="#page of nav?.pages" 
-			[page]="page"
-			(activate)="onActivate(page)">
-		</ui-nav-page>
+		<section class="pages">
+			<template ngFor #page [ngForOf]="nav?.pages">
+				<template [ngIf]="!page.is || page.is === 'link'">
+					<ui-nav-page 
+						[title]="page.title"
+						[page]="page"
+						[routerLink]="[page.path]">
+					</ui-nav-page>
+				</template>
+				<template [ngIf]="page.is === 'spacer'">
+					<div class="spacer"></div>
+				</template>
+			</template>
+		</section>
 	`,
-	directives: [NgFor, NavPageComponent],
+	directives: [CORE_DIRECTIVES, NavPageComponent, RouterLink],
 	styleUrls: [
 		"./bliss/ui/components/nav.css"
 	]

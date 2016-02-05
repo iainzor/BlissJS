@@ -1,21 +1,23 @@
 :host { 
 	display: flex;
-	align-items: center; 
-	flex-direction: column;
-	background-color: #212121; 
-	padding: 10px 0;
+	position: relative;
+	flex-direction: row;
+	background-color: #212121;
 	box-shadow: 0 0 15px rgba(0,0,0,.5);
 	z-index: 1000;
 }
-:host > ui-nav-page > ui-nav {
-	position: absolute;
-	left: 0;
-	visibility: hidden;
-	box-shadow: none;
-	background-color: #222;
-	transition: all .3s ease-in-out;
+
+:host > .pages {
+	padding: 10px 0;
+	display: flex;
+	flex-direction: column;
 }
-:host > ui-nav-page > ui-nav.visible {
-	left: 100%;
-	visibility: visible;
+	:host > .pages > .spacer {
+		flex-grow: 1;
+	}
+
+
+:host ui-nav {
+	background-color: #333;
+	box-shadow: none;
 }

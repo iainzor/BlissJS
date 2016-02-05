@@ -1,4 +1,4 @@
-System.register(["angular2/core", "angular2/common", "./nav-page"], function(exports_1) {
+System.register(["angular2/core", "angular2/common", "angular2/router", "./nav-page"], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +8,7 @@ System.register(["angular2/core", "angular2/common", "./nav-page"], function(exp
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, common_1, nav_page_1;
+    var core_1, common_1, router_1, nav_page_1;
     var NavComponent, Nav;
     return {
         setters:[
@@ -17,6 +17,9 @@ System.register(["angular2/core", "angular2/common", "./nav-page"], function(exp
             },
             function (common_1_1) {
                 common_1 = common_1_1;
+            },
+            function (router_1_1) {
+                router_1 = router_1_1;
             },
             function (nav_page_1_1) {
                 nav_page_1 = nav_page_1_1;
@@ -32,8 +35,8 @@ System.register(["angular2/core", "angular2/common", "./nav-page"], function(exp
                 NavComponent = __decorate([
                     core_1.Component({
                         selector: "ui-nav",
-                        template: "\n\t\t<ui-nav-page \n\t\t\t*ngFor=\"#page of nav?.pages\" \n\t\t\t[page]=\"page\"\n\t\t\t(activate)=\"onActivate(page)\">\n\t\t</ui-nav-page>\n\t",
-                        directives: [common_1.NgFor, nav_page_1.NavPageComponent],
+                        template: "\n\t\t<section class=\"pages\">\n\t\t\t<template ngFor #page [ngForOf]=\"nav?.pages\">\n\t\t\t\t<template [ngIf]=\"!page.is || page.is === 'link'\">\n\t\t\t\t\t<ui-nav-page \n\t\t\t\t\t\t[title]=\"page.title\"\n\t\t\t\t\t\t[page]=\"page\"\n\t\t\t\t\t\t[routerLink]=\"[page.path]\">\n\t\t\t\t\t</ui-nav-page>\n\t\t\t\t</template>\n\t\t\t\t<template [ngIf]=\"page.is === 'spacer'\">\n\t\t\t\t\t<div class=\"spacer\"></div>\n\t\t\t\t</template>\n\t\t\t</template>\n\t\t</section>\n\t",
+                        directives: [common_1.CORE_DIRECTIVES, nav_page_1.NavPageComponent, router_1.RouterLink],
                         styleUrls: [
                             "./bliss/ui/components/nav.css"
                         ]
