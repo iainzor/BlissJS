@@ -1,4 +1,4 @@
-System.register(["angular2/core", "angular2/common", "angular2/router"], function(exports_1) {
+System.register(["angular2/core", "angular2/common", "angular2/router", "../tooltip/tooltip"], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +8,7 @@ System.register(["angular2/core", "angular2/common", "angular2/router"], functio
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, common_1, router_1;
+    var core_1, common_1, router_1, tooltip_1;
     var NavPage;
     return {
         setters:[
@@ -20,6 +20,9 @@ System.register(["angular2/core", "angular2/common", "angular2/router"], functio
             },
             function (router_1_1) {
                 router_1 = router_1_1;
+            },
+            function (tooltip_1_1) {
+                tooltip_1 = tooltip_1_1;
             }],
         execute: function() {
             NavPage = (function () {
@@ -71,8 +74,8 @@ System.register(["angular2/core", "angular2/common", "angular2/router"], functio
                     core_1.Component({
                         selector: "ui-nav-page",
                         styleUrls: ["./bliss/ui/nav/nav-page.css"],
-                        directives: [common_1.CORE_DIRECTIVES],
-                        template: "\n\t\t<i *ngIf=\"page?.icon\" class=\"material-icons\">{{page.icon}}</i>\n\t\t<span *ngIf=\"!page?.icon\">{{page?.title}}</span>\n\t"
+                        directives: [common_1.CORE_DIRECTIVES, tooltip_1.Tooltip],
+                        template: "\n\t\t<i *ngIf=\"page?.icon\" class=\"material-icons\">{{page.icon}}</i>\n\t\t<span *ngIf=\"!page?.icon\">{{page?.title}}</span>\n\t\t<ui-tooltip [title]=\"page?.title\"></ui-tooltip>\n\t"
                     }), 
                     __metadata('design:paramtypes', [router_1.Router, core_1.ElementRef])
                 ], NavPage);

@@ -2,14 +2,16 @@ import {Component, ElementRef, Input, Output, EventEmitter, OnChanges, forwardRe
 import {CORE_DIRECTIVES} from "angular2/common"
 import {Router, RouterLink} from "angular2/router"
 import {NavInterface} from "./nav"
+import {Tooltip} from "../tooltip/tooltip"
 
 @Component({
 	selector: "ui-nav-page",
 	styleUrls: ["./bliss/ui/nav/nav-page.css"],
-	directives: [CORE_DIRECTIVES],
+	directives: [CORE_DIRECTIVES, Tooltip],
 	template: `
 		<i *ngIf="page?.icon" class="material-icons">{{page.icon}}</i>
 		<span *ngIf="!page?.icon">{{page?.title}}</span>
+		<ui-tooltip [title]="page?.title"></ui-tooltip>
 	`
 })
 export class NavPage implements OnChanges

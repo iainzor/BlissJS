@@ -10,7 +10,6 @@ import {NavPageInterface, NavPage} from "./nav-page"
 			<template ngFor #page [ngForOf]="nav?.pages">
 				<template [ngIf]="!page.is || page.is === 'link'">
 					<ui-nav-page 
-						[title]="page.title"
 						[page]="page"
 						[routerLink]="[page.path]">
 					</ui-nav-page>
