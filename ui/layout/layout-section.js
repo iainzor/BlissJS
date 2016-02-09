@@ -9,28 +9,41 @@ System.register(["angular2/core"], function(exports_1) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var core_1;
-    var LayoutComponent;
+    var LayoutSection;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
             }],
         execute: function() {
-            LayoutComponent = (function () {
-                function LayoutComponent() {
+            LayoutSection = (function () {
+                function LayoutSection(_elRef) {
+                    this._elRef = _elRef;
                 }
-                LayoutComponent = __decorate([
+                __decorate([
+                    core_1.Input(), 
+                    __metadata('design:type', Number)
+                ], LayoutSection.prototype, "grow", void 0);
+                __decorate([
+                    core_1.Input(), 
+                    __metadata('design:type', Number)
+                ], LayoutSection.prototype, "shrink", void 0);
+                LayoutSection = __decorate([
                     core_1.Component({
-                        selector: "ui-layout",
+                        selector: "ui-layout-section",
                         template: "<ng-content></ng-content>",
-                        styleUrls: ["./bliss/ui/components/layout.css"]
+                        styleUrls: ["./bliss/ui/layout/layout-section.css"],
+                        host: {
+                            "[style.flex-grow]": "grow",
+                            "[style.flex-shrink]": "shrink"
+                        }
                     }), 
-                    __metadata('design:paramtypes', [])
-                ], LayoutComponent);
-                return LayoutComponent;
+                    __metadata('design:paramtypes', [core_1.ElementRef])
+                ], LayoutSection);
+                return LayoutSection;
             })();
-            exports_1("LayoutComponent", LayoutComponent);
+            exports_1("LayoutSection", LayoutSection);
         }
     }
 });
-//# sourceMappingURL=layout.js.map
+//# sourceMappingURL=layout-section.js.map

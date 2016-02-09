@@ -9,7 +9,7 @@ System.register(["angular2/core", "angular2/common", "angular2/router", "./nav-p
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var core_1, common_1, router_1, nav_page_1;
-    var NavComponent, Nav;
+    var Nav;
     return {
         setters:[
             function (core_1_1) {
@@ -25,31 +25,24 @@ System.register(["angular2/core", "angular2/common", "angular2/router", "./nav-p
                 nav_page_1 = nav_page_1_1;
             }],
         execute: function() {
-            NavComponent = (function () {
-                function NavComponent() {
+            Nav = (function () {
+                function Nav() {
                 }
                 __decorate([
                     core_1.Input(), 
-                    __metadata('design:type', Nav)
-                ], NavComponent.prototype, "nav", void 0);
-                NavComponent = __decorate([
+                    __metadata('design:type', Object)
+                ], Nav.prototype, "nav", void 0);
+                Nav = __decorate([
                     core_1.Component({
                         selector: "ui-nav",
                         template: "\n\t\t<section class=\"pages\">\n\t\t\t<template ngFor #page [ngForOf]=\"nav?.pages\">\n\t\t\t\t<template [ngIf]=\"!page.is || page.is === 'link'\">\n\t\t\t\t\t<ui-nav-page \n\t\t\t\t\t\t[title]=\"page.title\"\n\t\t\t\t\t\t[page]=\"page\"\n\t\t\t\t\t\t[routerLink]=\"[page.path]\">\n\t\t\t\t\t</ui-nav-page>\n\t\t\t\t</template>\n\t\t\t\t<template [ngIf]=\"page.is === 'spacer'\">\n\t\t\t\t\t<div class=\"spacer\"></div>\n\t\t\t\t</template>\n\t\t\t</template>\n\t\t</section>\n\t",
-                        directives: [common_1.CORE_DIRECTIVES, nav_page_1.NavPageComponent, router_1.RouterLink],
+                        directives: [common_1.CORE_DIRECTIVES, nav_page_1.NavPage, router_1.RouterLink],
                         styleUrls: [
-                            "./bliss/ui/components/nav.css"
+                            "./bliss/ui/nav/nav.css"
                         ]
                     }), 
                     __metadata('design:paramtypes', [])
-                ], NavComponent);
-                return NavComponent;
-            })();
-            exports_1("NavComponent", NavComponent);
-            Nav = (function () {
-                function Nav() {
-                    this.pages = [];
-                }
+                ], Nav);
                 return Nav;
             })();
             exports_1("Nav", Nav);

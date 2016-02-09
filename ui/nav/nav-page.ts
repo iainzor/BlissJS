@@ -1,20 +1,20 @@
 import {Component, ElementRef, Input, Output, EventEmitter, OnChanges, forwardRef} from "angular2/core"
 import {CORE_DIRECTIVES} from "angular2/common"
 import {Router, RouterLink} from "angular2/router"
-import {Nav, NavComponent} from "./nav"
+import {NavInterface} from "./nav"
 
 @Component({
 	selector: "ui-nav-page",
-	styleUrls: ["./bliss/ui/components/nav-page.css"],
-	directives: [CORE_DIRECTIVES, (forwardRef(() => NavComponent))],
+	styleUrls: ["./bliss/ui/nav/nav-page.css"],
+	directives: [CORE_DIRECTIVES],
 	template: `
 		<i *ngIf="page?.icon" class="material-icons">{{page.icon}}</i>
 		<span *ngIf="!page?.icon">{{page?.title}}</span>
 	`
 })
-export class NavPageComponent implements OnChanges
+export class NavPage implements OnChanges
 {
-	@Input() page:NavPage;
+	@Input() page:NavPageInterface;
 	
 	@Output() activate:EventEmitter<NavPageInterface> = new EventEmitter<NavPageInterface>()
 	@Output() deactivate:EventEmitter<NavPageInterface> = new EventEmitter<NavPageInterface>()
@@ -57,14 +57,5 @@ export interface NavPageInterface
 	icon?:string
 	isActive?:boolean
 	
-	nav?:Nav
-}
-
-export class NavPage implements NavPageInterface
-{
-	is:string = "link"
-	path:string = null
-	title:string = null
-	icon:string = null
-	isActive:boolean = false
+	nav?:NavInterface
 }

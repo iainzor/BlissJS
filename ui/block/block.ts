@@ -2,7 +2,7 @@ import {Component, Input, OnChanges, ElementRef} from "angular2/core"
 
 @Component({
 	selector: "ui-block",
-	styleUrls: ["./bliss/ui/components/block.css"],
+	styleUrls: ["./bliss/ui/block/block.css"],
 	template: `
 		<ng-content select="header"></ng-content>
 		<section class="content" [class.compact]="compact!==false">
@@ -11,7 +11,7 @@ import {Component, Input, OnChanges, ElementRef} from "angular2/core"
 		<ng-content select="footer"></ng-content>
 	`
 })
-export class BlockComponent implements OnChanges
+export class Block implements OnChanges
 {
 	@Input() z:number = 1;
 	@Input() compact:boolean = false;

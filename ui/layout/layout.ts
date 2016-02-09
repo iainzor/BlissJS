@@ -3,9 +3,7 @@ import {Component} from "angular2/core"
 @Component({
 	selector: "ui-layout",
 	template: "<ng-content></ng-content>",
-	styleUrls: ["./bliss/ui/components/layout.css"]
+	styleUrls: ["./bliss/ui/layout/layout.css"]
 })
-export class LayoutComponent
-{
-	
-}
+export class Layout
+{}
