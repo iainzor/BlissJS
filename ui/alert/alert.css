@@ -1,0 +1,12 @@
+:host {
+	display: block;
+	margin: 20px 0;
+}
+:host(:first-child) {
+	margin-top: 0;
+}
+:host(:last-child) {
+	margin-bottom: 0;
+}
+
+:host > .alert { margin: 0; }
