@@ -1,0 +1,20 @@
+:host {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	padding: 15px 0;
+}
+:host(:last-child) {
+	border-bottom: none;
+	padding-bottom: 0;
+}
+:host(:first-child) {
+	padding-top: 0;
+}
+:host([href]) {
+	cursor: pointer;
+}
+
+:host > * { margin: 0 10px; flex-grow: 1; }
+:host > *:first-child { margin-left: 0; }
+:host > *:last-child { margin-right: 0; }
