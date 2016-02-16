@@ -19,29 +19,38 @@ System.register(["angular2/core"], function(exports_1) {
             Block = (function () {
                 function Block(_elRef) {
                     this._elRef = _elRef;
-                    this.z = 1;
                     this.compact = false;
-                    this._changeZ(1);
+                    this._el = _elRef.nativeElement;
+                    this.z = 1;
                 }
-                Block.prototype.ngOnChanges = function (changes) {
-                    if (changes.z) {
-                        this._changeZ(changes.z.currentValue);
-                    }
-                };
-                Block.prototype._changeZ = function (z) {
-                    var el = this._elRef.nativeElement;
-                    var classList = Array.prototype.slice.apply(el.classList);
-                    classList.forEach(function (className) {
-                        if (className.match(/^z-/)) {
-                            el.classList.remove(className);
+                Object.defineProperty(Block.prototype, "is", {
+                    set: function (is) {
+                        var classList = this._el.classList;
+                        if (this._isClass) {
+                            classList.remove(this._isClass);
                         }
-                    });
-                    el.classList.add("z-" + z);
-                };
-                __decorate([
-                    core_1.Input(), 
-                    __metadata('design:type', Number)
-                ], Block.prototype, "z", void 0);
+                        if (is) {
+                            this._isClass = "is-" + is;
+                            classList.add(this._isClass);
+                        }
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                Object.defineProperty(Block.prototype, "z", {
+                    set: function (z) {
+                        var classList = this._el.classList;
+                        if (this._zClass) {
+                            classList.remove(this._zClass);
+                        }
+                        if (z) {
+                            this._zClass = "z-" + z;
+                            classList.add(this._zClass);
+                        }
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
                 __decorate([
                     core_1.Input(), 
                     __metadata('design:type', Boolean)
@@ -50,6 +59,10 @@ System.register(["angular2/core"], function(exports_1) {
                     core_1.Component({
                         selector: "ui-block",
                         styleUrls: ["./bliss/ui/block/block.css"],
+                        inputs: [
+                            "is",
+                            "z"
+                        ],
                         template: "\n\t\t<ng-content select=\"header\"></ng-content>\n\t\t<section class=\"content\" [class.compact]=\"compact!==false\">\n\t\t\t<ng-content></ng-content>\n\t\t</section>\n\t\t<ng-content select=\"footer\"></ng-content>\n\t"
                     }), 
                     __metadata('design:paramtypes', [core_1.ElementRef])

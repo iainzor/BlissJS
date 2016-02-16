@@ -2,17 +2,14 @@
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	padding: 15px 0;
+	padding: 15px 20px;
 }
-:host(:last-child) {
-	border-bottom: none;
-	padding-bottom: 0;
-}
-:host(:first-child) {
-	padding-top: 0;
-}
+
 :host([href]) {
 	cursor: pointer;
+}
+:host([href]:hover) {
+	background-color: rgba(0,0,0,.025);
 }
 
 :host > * { margin: 0 10px; flex-grow: 1; }

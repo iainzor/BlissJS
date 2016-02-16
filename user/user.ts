@@ -1,10 +1,6 @@
-import "rxjs/add/operator/map"
-import {Injectable, Injector} from "angular2/core"
-import {Http} from "angular2/http"
 import {UserRole} from "./user-role"
 
-@Injectable()
-export class User
+export class User implements UserInterface
 {
 	public id:number = 0
 	public email:string = null
@@ -15,4 +11,11 @@ export class User
 	public updated:number
 	
 	public role:UserRole
+}
+
+export interface UserInterface
+{
+	id?:Number
+	email?:string
+	displayName?:string
 }

@@ -3,8 +3,13 @@
 	flex-direction: column;
 	border-radius: 3px;
 	background-color: #fff;
+	padding: 0;
 	transition: all .3s ease-in-out;
 }
+
+:host(.is-error) { background-color: #F44336; color: #fff; }
+:host(.is-notice) { background-color: #78909C; color: #fff; }
+
 	:host > section,
 	:host > header,
 	:host > footer {

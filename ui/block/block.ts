@@ -1,8 +1,12 @@
-import {Component, Input, OnChanges, ElementRef} from "angular2/core"
+import {Component, Input, ElementRef} from "angular2/core"
 
 @Component({
 	selector: "ui-block",
 	styleUrls: ["./bliss/ui/block/block.css"],
+	inputs: [
+		"is",
+		"z"
+	],
 	template: `
 		<ng-content select="header"></ng-content>
 		<section class="content" [class.compact]="compact!==false">
@@ -11,30 +15,40 @@ import {Component, Input, OnChanges, ElementRef} from "angular2/core"
 		<ng-content select="footer"></ng-content>
 	`
 })
-export class Block implements OnChanges
+export class Block
 {
-	@Input() z:number = 1;
+	private _el:HTMLElement;
+	private _isClass:string;
+	private _zClass:string;
+	
 	@Input() compact:boolean = false;
 	
 	constructor(private _elRef:ElementRef) {
-		this._changeZ(1);
+		this._el = _elRef.nativeElement;
+		this.z = 1;
 	}
 	
-	ngOnChanges(changes) {
-		if (changes.z) {
-			this._changeZ(changes.z.currentValue);
+	set is(is:string) {
+		let classList = this._el.classList;
+		
+		if (this._isClass) {
+			classList.remove(this._isClass);
+		}
+		if (is) {
+			this._isClass = "is-"+ is;
+			classList.add(this._isClass);
 		}
 	}
 	
-	private _changeZ(z:number) {
-		let el:HTMLElement = this._elRef.nativeElement;
-		let classList = Array.prototype.slice.apply(el.classList);
+	set z(z:number) {
+		let classList = this._el.classList;
 		
-		classList.forEach((className:string) => {
-			if (className.match(/^z-/)) {
-				el.classList.remove(className);
-			}
-		});
-		el.classList.add("z-"+ z);
+		if (this._zClass) {
+			classList.remove(this._zClass);
+		}
+		if (z) {
+			this._zClass = "z-"+ z;
+			classList.add(this._zClass);
+		}
 	}
 }
