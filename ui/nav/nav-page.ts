@@ -53,6 +53,7 @@ export class NavPage implements OnChanges
 
 export interface NavPageInterface
 {
+	id?:string
 	is?:string
 	path?:string
 	title?:string

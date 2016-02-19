@@ -5,10 +5,12 @@
 	padding: 15px 20px;
 }
 
-:host([href]) {
+:host([href]),
+:host([clickable]) {
 	cursor: pointer;
 }
-:host([href]:hover) {
+:host([href]:hover),
+:host([clickable]:hover) {
 	background-color: rgba(0,0,0,.025);
 }
 

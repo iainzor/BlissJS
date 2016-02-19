@@ -1,6 +1,6 @@
 import {Component, Input, Output, EventEmitter} from "angular2/core"
 import {User} from "../user"
-import {UserService} from "../services/user"
+import {UserService} from "../user-service"
 
 @Component({
 	selector: "user-sign-out",

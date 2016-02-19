@@ -1,4 +1,4 @@
-System.register(["angular2/core", "../user", "../services/user"], function(exports_1) {
+System.register(["angular2/core", "../user", "../user-service"], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +8,7 @@ System.register(["angular2/core", "../user", "../services/user"], function(expor
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, user_1, user_2;
+    var core_1, user_1, user_service_1;
     var SignOutComponent;
     return {
         setters:[
@@ -18,8 +18,8 @@ System.register(["angular2/core", "../user", "../services/user"], function(expor
             function (user_1_1) {
                 user_1 = user_1_1;
             },
-            function (user_2_1) {
-                user_2 = user_2_1;
+            function (user_service_1_1) {
+                user_service_1 = user_service_1_1;
             }],
         execute: function() {
             SignOutComponent = (function () {
@@ -45,9 +45,9 @@ System.register(["angular2/core", "../user", "../services/user"], function(expor
                     core_1.Component({
                         selector: "user-sign-out",
                         template: "\n\t\t<button (click)=\"signOut()\">Sign Out</button>\n\t",
-                        providers: [user_2.UserService]
+                        providers: [user_service_1.UserService]
                     }), 
-                    __metadata('design:paramtypes', [user_2.UserService])
+                    __metadata('design:paramtypes', [user_service_1.UserService])
                 ], SignOutComponent);
                 return SignOutComponent;
             })();

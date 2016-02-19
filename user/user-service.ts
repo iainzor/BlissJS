@@ -1,6 +1,6 @@
 import {Injectable} from "angular2/core"
 import {Http} from "angular2/http"
-import {User} from "../user"
+import {User, UserInterface} from "./user"
 
 @Injectable()
 export class UserService

@@ -9,9 +9,7 @@ import {Component, Input, ElementRef} from "angular2/core"
 	],
 	template: `
 		<ng-content select="header"></ng-content>
-		<section class="content" [class.compact]="compact!==false">
-			<ng-content></ng-content>
-		</section>
+		<ng-content></ng-content>
 		<ng-content select="footer"></ng-content>
 	`
 })

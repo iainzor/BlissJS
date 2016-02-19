@@ -25,33 +25,59 @@ System.register(["angular2/core", "../layout/layout", "../layout/layout-section"
             Tooltip = (function () {
                 function Tooltip(_elRef) {
                     this._elRef = _elRef;
-                    var el = _elRef.nativeElement;
-                    var parent = el.parentElement;
+                    this.open = false;
+                }
+                Tooltip.prototype.ngOnInit = function () {
+                    var parent = this._parentEl();
                     parent.addEventListener("mouseover", this._open.bind(this));
                     parent.addEventListener("mouseleave", this._close.bind(this));
-                }
+                };
+                Tooltip.prototype.ngOnDestroy = function () {
+                    var parent = this._parentEl();
+                    parent.removeEventListener("mouseover", this._open.bind(this));
+                    parent.removeEventListener("mouseleave", this._close.bind(this));
+                };
+                Tooltip.prototype.ngOnChanges = function (changes) {
+                    if (changes.title) {
+                        setTimeout(this.position.bind(this));
+                    }
+                };
+                Tooltip.prototype.position = function () {
+                    var el = this._elRef.nativeElement;
+                    var elCoords = el.getBoundingClientRect();
+                    var parent = el.parentElement;
+                    var parentCoords = parent.getBoundingClientRect();
+                    var docCoords = document.body.getBoundingClientRect();
+                    var width = elCoords.left + el.clientWidth + parentCoords.width + 10;
+                    var diff = width - docCoords.width;
+                    if (diff > 0) {
+                        el.style.transform = "translateX(-" + (el.clientWidth + 10) + "px)";
+                        el.style.transformOrigin = "right center";
+                    }
+                    else {
+                        el.style.transform = "translatX(" + (parentCoords.width + 10) + "px)";
+                        el.style.transformOrigin = "left center";
+                    }
+                };
+                Tooltip.prototype._parentEl = function () {
+                    return this._elRef.nativeElement.parentNode;
+                };
                 Tooltip.prototype._open = function () {
                     this.open = true;
+                    this.position();
                 };
                 Tooltip.prototype._close = function () {
                     this.open = false;
                 };
-                __decorate([
-                    core_1.Input(), 
-                    __metadata('design:type', String)
-                ], Tooltip.prototype, "title", void 0);
-                __decorate([
-                    core_1.Input(), 
-                    __metadata('design:type', Boolean)
-                ], Tooltip.prototype, "open", void 0);
                 Tooltip = __decorate([
                     core_1.Component({
                         selector: "ui-tooltip",
-                        templateUrl: "./bliss/ui/tooltip/tooltip.html",
+                        template: "{{title}}",
                         styleUrls: ["./bliss/ui/tooltip/tooltip.css"],
                         directives: [layout_1.Layout, layout_section_1.LayoutSection],
+                        inputs: ["title", "open"],
                         host: {
-                            "[class.open]": "open",
+                            "[class.open]": "open"
                         }
                     }), 
                     __metadata('design:paramtypes', [core_1.ElementRef])

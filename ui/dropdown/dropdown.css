@@ -1,0 +1,40 @@
+:host {
+	display: inline-block;
+	position: relative;
+	cursor: pointer;
+	padding-right: 15px;
+}
+:host > .content {
+	cursor: default;
+	position: absolute;
+	top: 100%;
+	right: 0;
+	margin-top: 5px;
+	z-index: 1;
+	transition: all .2s ease-in-out;
+	transform: scale(0);
+	transform-origin: top right;
+	opacity: 0;
+	visibility: hidden;
+}
+:host(.open) > .content {
+	transform: scale(1);
+	opacity: 1;
+	visibility: visible;
+}
+
+:host > .arrow {
+	position: absolute;
+	z-index: 0;
+	bottom: 0;
+	right: 0;
+	border: 6px solid #fff;
+	border-top-color: transparent;
+	border-left-color: transparent;
+	opacity: .75;
+	transition: opacity .2s ease-in-out;
+}
+:host(:hover) > .arrow,
+:host(.open) > .arrow {
+	opacity: 1;
+}

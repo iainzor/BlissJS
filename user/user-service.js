@@ -47,4 +47,4 @@ System.register(["angular2/core", "angular2/http"], function(exports_1) {
         }
     }
 });
-//# sourceMappingURL=user.js.map
+//# sourceMappingURL=user-service.js.map
