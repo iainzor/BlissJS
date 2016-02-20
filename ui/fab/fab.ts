@@ -6,17 +6,23 @@ import {Block} from "../block/block"
 @Component({
 	selector: "ui-fab",
 	styleUrls: ["./bliss/ui/fab/fab.css"],
-	inputs: ["title", "icon", "bottom", "top", "left", "right", "z"],
+	inputs: ["title", "icon", "bottom", "top", "left", "right", "z", "isVisible"],
 	directives: [Tooltip, Block, NgIf],
+	host: {
+		"[class.visible]": "isVisible && isReady"
+	},
 	template: `
 	<ui-block [z]="z">
 		<ui-tooltip *ngIf="title" [title]="title"></ui-tooltip>
-		<div class="material-icons">{{icon}}</div>
+		<i class="material-icons">{{icon}}</i>
 	</ui-block>
 	`
 })
 export class Fab implements OnChanges, OnInit, OnDestroy
 {
+	isReady:boolean = false;
+	isVisible:boolean = true;
+		
 	z:number = 2;
 	
 	top:number;
@@ -27,6 +33,8 @@ export class Fab implements OnChanges, OnInit, OnDestroy
 	constructor(private _elRef:ElementRef) {}
 	
 	ngOnInit() {
+		this.position();
+		this.isReady = true;
 		window.addEventListener("resize", this.position.bind(this));
 	}
 	
@@ -40,6 +48,7 @@ export class Fab implements OnChanges, OnInit, OnDestroy
 	
 	position() {
 		let el:HTMLElement = this._elRef.nativeElement;
+		let fab = <HTMLElement> el.querySelector("ui-block");
 		let elCoords = el.getBoundingClientRect();
 		let parent = el.parentElement;
 		let parentCoords = parent.getBoundingClientRect();
@@ -47,27 +56,15 @@ export class Fab implements OnChanges, OnInit, OnDestroy
 		let left;
 		
 		if (typeof this.top !== "undefined") {
-			top = parentCoords.top + this.top;
+			fab.style.top = this.top +"px";
 		} else if (typeof this.bottom !== "undefined") {
-			top = parentCoords.top + parentCoords.height - elCoords.width;
+			fab.style.bottom = this.bottom +"px";
 		}
 		
 		if (typeof this.left !== "undefined") {
-			left = parentCoords.left + this.left;
+			fab.style.left = this.left +"px";
 		} else if (typeof this.right !== "undefined") {
-			left = parentCoords.left + parentCoords.width - elCoords.width;
+			fab.style.right = this.right +"px";
 		}
-		
-		if (typeof top !== "undefined" || typeof left !== "undefined") {
-			el.style.position = "fixed";
-			el.style.top = (typeof top !== "undefined") ? top+"px" : null;
-			el.style.left = (typeof left !== "undefined") ? left+"px" : null;
-		} else {
-			el.style.position = "relative";
-		}
-	}
-	
-	_parentEl() : HTMLElement {
-		return this._elRef.nativeElement.parentNode;
 	}
 }

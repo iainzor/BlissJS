@@ -1,9 +1,11 @@
 :host {
-	display: inline-block;
-	cursor: pointer;
+	display: block;
+	position: relative;
 }
 
 :host > ui-block {
+	position: absolute;
+	cursor: pointer;
 	width: 50px;
 	height: 50px;
 	border-radius: 25px;
@@ -15,4 +17,18 @@
 	color: #fff;
 	transition: all .3s ease-in-out;
 	margin: 0;
+	transform: scale(0);
 }
+:host(.visible) > ui-block {
+	transform: scale(1);
+}
+
+	:host > ui-block > i {
+		transition: all .3s ease-in-out;
+		transform: rotateZ(-90deg);
+		opacity: 0;
+	}
+	:host(.visible) > ui-block > i {
+		transform: rotateZ(0);
+		opacity: 1;
+	}

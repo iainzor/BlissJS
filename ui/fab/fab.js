@@ -28,9 +28,13 @@ System.register(["angular2/core", "angular2/common", "../tooltip/tooltip", "../b
             Fab = (function () {
                 function Fab(_elRef) {
                     this._elRef = _elRef;
+                    this.isReady = false;
+                    this.isVisible = true;
                     this.z = 2;
                 }
                 Fab.prototype.ngOnInit = function () {
+                    this.position();
+                    this.isReady = true;
                     window.addEventListener("resize", this.position.bind(this));
                 };
                 Fab.prototype.ngOnDestroy = function () {
@@ -41,42 +45,35 @@ System.register(["angular2/core", "angular2/common", "../tooltip/tooltip", "../b
                 };
                 Fab.prototype.position = function () {
                     var el = this._elRef.nativeElement;
+                    var fab = el.querySelector("ui-block");
                     var elCoords = el.getBoundingClientRect();
                     var parent = el.parentElement;
                     var parentCoords = parent.getBoundingClientRect();
                     var top;
                     var left;
                     if (typeof this.top !== "undefined") {
-                        top = parentCoords.top + this.top;
+                        fab.style.top = this.top + "px";
                     }
                     else if (typeof this.bottom !== "undefined") {
-                        top = parentCoords.top + parentCoords.height - elCoords.width;
+                        fab.style.bottom = this.bottom + "px";
                     }
                     if (typeof this.left !== "undefined") {
-                        left = parentCoords.left + this.left;
+                        fab.style.left = this.left + "px";
                     }
                     else if (typeof this.right !== "undefined") {
-                        left = parentCoords.left + parentCoords.width - elCoords.width;
+                        fab.style.right = this.right + "px";
                     }
-                    if (typeof top !== "undefined" || typeof left !== "undefined") {
-                        el.style.position = "fixed";
-                        el.style.top = (typeof top !== "undefined") ? top + "px" : null;
-                        el.style.left = (typeof left !== "undefined") ? left + "px" : null;
-                    }
-                    else {
-                        el.style.position = "relative";
-                    }
-                };
-                Fab.prototype._parentEl = function () {
-                    return this._elRef.nativeElement.parentNode;
                 };
                 Fab = __decorate([
                     core_1.Component({
                         selector: "ui-fab",
                         styleUrls: ["./bliss/ui/fab/fab.css"],
-                        inputs: ["title", "icon", "bottom", "top", "left", "right", "z"],
+                        inputs: ["title", "icon", "bottom", "top", "left", "right", "z", "isVisible"],
                         directives: [tooltip_1.Tooltip, block_1.Block, common_1.NgIf],
-                        template: "\n\t<ui-block [z]=\"z\">\n\t\t<ui-tooltip *ngIf=\"title\" [title]=\"title\"></ui-tooltip>\n\t\t<div class=\"material-icons\">{{icon}}</div>\n\t</ui-block>\n\t"
+                        host: {
+                            "[class.visible]": "isVisible && isReady"
+                        },
+                        template: "\n\t<ui-block [z]=\"z\">\n\t\t<ui-tooltip *ngIf=\"title\" [title]=\"title\"></ui-tooltip>\n\t\t<i class=\"material-icons\">{{icon}}</i>\n\t</ui-block>\n\t"
                     }), 
                     __metadata('design:paramtypes', [core_1.ElementRef])
                 ], Fab);
