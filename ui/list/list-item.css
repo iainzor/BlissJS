@@ -14,6 +14,6 @@
 	background-color: rgba(0,0,0,.025);
 }
 
-:host > * { margin: 0 10px; flex-grow: 1; }
+:host > * { margin: 0 10px; }
 :host > *:first-child { margin-left: 0; }
 :host > *:last-child { margin-right: 0; }

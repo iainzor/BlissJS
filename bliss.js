@@ -25,18 +25,15 @@ System.register(["rxjs/add/operator/map", "angular2/core", "angular2/http"], fun
                     this._http = _http;
                     this.url = "/app.json";
                 }
-                Bliss.prototype.getConfig = function () {
+                Bliss.prototype.load = function () {
                     var _this = this;
-                    if (!this._configPromise) {
-                        this._configPromise = new Promise(function (resolve) {
-                            _this._http.get(_this.url)
-                                .map(function (res) { return res.json(); })
-                                .subscribe(function (config) {
-                                resolve(config);
-                            });
+                    return new Promise(function (resolve) {
+                        _this._http.get(_this.url)
+                            .map(function (res) { return res.json(); })
+                            .subscribe(function (config) {
+                            resolve(config);
                         });
-                    }
-                    return this._configPromise;
+                    });
                 };
                 __decorate([
                     core_1.Input(), 

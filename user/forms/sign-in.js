@@ -31,13 +31,9 @@ System.register(["rxjs/add/operator/map", "angular2/core", "angular2/common", "a
         execute: function() {
             SignInForm = (function () {
                 function SignInForm(http, bliss) {
-                    var _this = this;
                     this.http = http;
                     this.success = new core_1.EventEmitter();
                     this.user = new user_1.User();
-                    bliss.getConfig().then(function (config) {
-                        _this.user = config.user;
-                    });
                 }
                 SignInForm.prototype.submit = function () {
                     var _this = this;

@@ -7,3 +7,7 @@
 :host([row-reverse]) { flex-direction: row-reverse; }
 :host([column]) { flex-direction: column; }
 :host([column-reverse]) { flex-direction: column-reverse; }
+
+:host([align-center]) { align-items: center; }
+
+:host([justify-center]) { justify-content: center; }

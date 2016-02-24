@@ -7,17 +7,14 @@ export class UserService
 {
 	constructor(private http:Http) {}
 	
-	signOut(user:User) : Promise<User> {
-		var promise = new Promise<User>(
+	signOut(user:User) : Promise<boolean> {
+		var promise = new Promise<boolean>(
 			(resolve, reject) => {
 				this.http.post("sign-out.json", "")
 					.map(res => res.json())
 					.subscribe(
 						(response:User) => {
-							for (var i in response) {
-								user[i] = response[i];
-							}
-							resolve(user);
+							resolve(true);
 						}
 					);
 			}

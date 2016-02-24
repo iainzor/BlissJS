@@ -29,10 +29,7 @@ System.register(["angular2/core", "angular2/http"], function(exports_1) {
                         _this.http.post("sign-out.json", "")
                             .map(function (res) { return res.json(); })
                             .subscribe(function (response) {
-                            for (var i in response) {
-                                user[i] = response[i];
-                            }
-                            resolve(user);
+                            resolve(true);
                         });
                     });
                     return promise;

@@ -12,20 +12,16 @@ export class Bliss
 	
 	constructor(private _http:Http) {}
 	
-	public getConfig() : Promise<BlissConfig> {
-		if (!this._configPromise) {
-			this._configPromise = new Promise<BlissConfig>(
-				(resolve) => {
-					this._http.get(this.url)
-						.map(res => res.json())
-						.subscribe((config:BlissConfig) => {
-							resolve(config);
-						}
-					);
-				}
-			)
-		}
-		
-		return this._configPromise;
+	load() : Promise<BlissConfig> {
+		return new Promise<BlissConfig>(
+			(resolve) => {
+				this._http.get(this.url)
+					.map(res => res.json())
+					.subscribe((config:BlissConfig) => {
+						resolve(config);
+					}
+				);
+			}
+		);
 	}
 }

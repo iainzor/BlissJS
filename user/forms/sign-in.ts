@@ -29,13 +29,9 @@ export class SignInForm
 {
 	@Output() success = new EventEmitter<User>()
 	
-	public user:User = new User()
+	user:User = new User();
 	
-	constructor(private http:Http, bliss:Bliss) {
-		bliss.getConfig().then((config) =>  {
-			this.user = config.user;
-		});
-	}
+	constructor(private http:Http, bliss:Bliss) {}
 	
 	submit() {
 		this.http.post("sign-in.json", JSON.stringify(this.user))
