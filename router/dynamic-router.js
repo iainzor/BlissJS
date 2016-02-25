@@ -8,19 +8,14 @@ System.register([], function(exports_1) {
                     this.router = router;
                 }
                 DynamicRouter.prototype.populate = function (routes) {
-                    //console.log("Populating", routes, this.router);
                     var _this = this;
-                    return new Promise(function (resolve) {
-                        var defs = [];
-                        routes.forEach(function (route) {
-                            //console.log("Creating def for", route);
-                            var def = _this.createRouteDefinition(route, _this.router, _this.router.hostComponent);
-                            defs.push(def);
-                        });
-                        _this.router.config(defs).then(function () {
-                            resolve();
-                        });
+                    var component = this.router.hostComponent;
+                    var defs = [];
+                    routes.forEach(function (route) {
+                        var def = _this.createRouteDefinition(route, _this.router, component);
+                        defs.push(def);
                     });
+                    return this.router.config(defs);
                 };
                 DynamicRouter.prototype.createRouteDefinition = function (route, parentRouter, parentComponent) {
                     return {
@@ -36,9 +31,7 @@ System.register([], function(exports_1) {
                                         //console.log("Building child", component);
                                         var childRouter = parentRouter.childRouter(component);
                                         var dr = new DynamicRouter(childRouter);
-                                        dr.populate(route.routes).then(function () {
-                                            resolve(component);
-                                        });
+                                        dr.populate(route.routes).then(function () { return resolve(component); });
                                     }
                                     else {
                                         resolve(component);

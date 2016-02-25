@@ -13,6 +13,10 @@
 :host([clickable]:hover) {
 	background-color: rgba(0,0,0,.025);
 }
+:host(.active),
+:host(.router-link-active) {
+	background-color: rgba(0,0,0,.05);
+}
 
 :host > * { margin: 0 10px; }
 :host > *:first-child { margin-left: 0; }

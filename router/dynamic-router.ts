@@ -8,25 +8,14 @@ export class DynamicRouter
 	constructor(public router:Router) {}
 	
 	populate(routes:RouteConfig[]) : Promise<any> {
-		//console.log("Populating", routes, this.router);
+		let component = this.router.hostComponent;
+		let defs = [];
 		
-		return new Promise<any>(
-			(resolve) => {
-				let defs = [];
-				
-				routes.forEach((route) => {
-					//console.log("Creating def for", route);
-					
-					let def = this.createRouteDefinition(route, this.router, this.router.hostComponent);
-					defs.push(def);
-				});
-				
-				this.router.config(defs).then(() => {
-					resolve();
-				});
-				
-			}
-		)
+		routes.forEach((route) => {
+			let def = this.createRouteDefinition(route, this.router, component);
+			defs.push(def);
+		});
+		return this.router.config(defs);
 	}
 	
 	createRouteDefinition(route:RouteConfig, parentRouter:Router, parentComponent:any) : RouteDefinition {
@@ -48,9 +37,7 @@ export class DynamicRouter
 								let childRouter = parentRouter.childRouter(component);
 								let dr = new DynamicRouter(childRouter);
 								
-								dr.populate(route.routes).then(() => {
-									resolve(component);
-								});
+								dr.populate(route.routes).then(() => resolve(component));
 							} else {
 								resolve(component);
 							}
