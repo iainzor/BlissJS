@@ -11,6 +11,7 @@
 :host(.is-error) { background-color: #F44336; color: #fff; }
 :host(.is-notice) { background-color: #78909C; color: #fff; }
 :host(.is-success) { background-color: #8BC34A; color: #fff; }
+:host(.is-dark) { background-color: #212121; color: #fff; }
 
 	:host > section,
 	:host > header,
