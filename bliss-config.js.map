@@ -1,1 +1,1 @@
-{"version":3,"file":"bliss-config.js","sourceRoot":"","sources":["bliss-config.ts"],"names":["BlissConfig","BlissConfig.constructor"],"mappings":";;;;;;;;;YAEA;gBAAAA;oBAMCC,SAAIA,GAAQA,IAAIA,WAAIA,EAAEA,CAAAA;gBACvBA,CAACA;gBAADD,kBAACA;YAADA,CAACA,AAPD,IAOC;YAPD,qCAOC,CAAA"}
+{"version":3,"file":"bliss-config.js","sourceRoot":"","sources":["bliss-config.ts"],"names":[],"mappings":";;;;;;;;;;;YAEA;gBAAA;oBAMC,SAAI,GAAQ,IAAI,WAAI,EAAE,CAAA;gBACvB,CAAC;gBAAD,kBAAC;YAAD,CAAC,AAPD,IAOC;YAPD,qCAOC,CAAA"}

@@ -11,3 +11,8 @@
 :host([align-center]) { align-items: center; }
 
 :host([justify-center]) { justify-content: center; }
+
+@media(max-width: 768px) {
+	:host([row]) { flex-direction: column; }
+	:host([row-reverse]) { flex-direction: column-reverse; }
+}

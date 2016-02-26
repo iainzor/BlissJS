@@ -11,7 +11,7 @@ System.register(["angular2/core", "angular2/http"], function(exports_1, context_
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var core_1, http_1;
-    var UserService;
+    var AccountService, ChangePasswordResponse;
     return {
         setters:[
             function (core_1_1) {
@@ -21,29 +21,42 @@ System.register(["angular2/core", "angular2/http"], function(exports_1, context_
                 http_1 = http_1_1;
             }],
         execute: function() {
-            UserService = (function () {
-                function UserService(http) {
+            AccountService = (function () {
+                function AccountService(http) {
                     this.http = http;
                 }
-                UserService.prototype.signOut = function (user) {
+                AccountService.prototype.changePassword = function (currentPassword, newPassword, confirmPassword) {
                     var _this = this;
-                    var promise = new Promise(function (resolve, reject) {
-                        _this.http.post("sign-out.json", "")
+                    var body = JSON.stringify({
+                        currentPassword: currentPassword,
+                        newPassword: newPassword,
+                        confirmPassword: confirmPassword
+                    });
+                    return new Promise(function (resolve, reject) {
+                        _this.http
+                            .post("account/change-password.json", body)
                             .map(function (res) { return res.json(); })
                             .subscribe(function (response) {
-                            resolve(true);
+                            resolve(response);
+                        }, function (error) {
+                            reject(error);
                         });
                     });
-                    return promise;
                 };
-                UserService = __decorate([
+                AccountService = __decorate([
                     core_1.Injectable(), 
                     __metadata('design:paramtypes', [http_1.Http])
-                ], UserService);
-                return UserService;
+                ], AccountService);
+                return AccountService;
             }());
-            exports_1("UserService", UserService);
+            exports_1("AccountService", AccountService);
+            ChangePasswordResponse = (function () {
+                function ChangePasswordResponse() {
+                }
+                return ChangePasswordResponse;
+            }());
+            exports_1("ChangePasswordResponse", ChangePasswordResponse);
         }
     }
 });
-//# sourceMappingURL=user-service.js.map
+//# sourceMappingURL=account-service.js.map
