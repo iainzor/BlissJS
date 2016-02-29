@@ -1,1 +1,1 @@
-{"version":3,"file":"role.js","sourceRoot":"","sources":["role.ts"],"names":[],"mappings":";;;;;;;YAEA;gBAAA;oBAEQ,SAAI,GAAU,IAAI,CAAA;oBAClB,mBAAc,GAAW,KAAK,CAAA;oBAC9B,gBAAW,GAAqB,EAAE,CAAA;gBAC1C,CAAC;gBAAD,WAAC;YAAD,CAAC,AALD,IAKC;YALD,uBAKC,CAAA"}
+{"version":3,"file":"role.js","sourceRoot":"","sources":["role.ts"],"names":["Role","Role.constructor"],"mappings":";;;;;YAEA;gBAAAA;oBAEQC,SAAIA,GAAUA,IAAIA,CAAAA;oBAClBA,mBAAcA,GAAWA,KAAKA,CAAAA;oBAC9BA,gBAAWA,GAAqBA,EAAEA,CAAAA;gBAC1CA,CAACA;gBAADD,WAACA;YAADA,CAACA,AALD,IAKC;YALD,uBAKC,CAAA"}

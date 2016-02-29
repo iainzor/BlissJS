@@ -1,1 +1,1 @@
-{"version":3,"file":"user-session.js","sourceRoot":"","sources":["user-session.ts"],"names":[],"mappings":";;;;;;;;;;;YAEA;gBAAA;oBAGQ,YAAO,GAAW,KAAK,CAAA;oBAGvB,SAAI,GAAQ,IAAI,WAAI,EAAE,CAAA;gBAC9B,CAAC;gBAAD,kBAAC;YAAD,CAAC,AAPD,IAOC;YAPD,qCAOC,CAAA"}
+{"version":3,"file":"user-session.js","sourceRoot":"","sources":["user-session.ts"],"names":["UserSession","UserSession.constructor"],"mappings":";;;;;;;;;YAEA;gBAAAA;oBAGQC,YAAOA,GAAWA,KAAKA,CAAAA;oBAGvBA,SAAIA,GAAQA,IAAIA,WAAIA,EAAEA,CAAAA;gBAC9BA,CAACA;gBAADD,kBAACA;YAADA,CAACA,AAPD,IAOC;YAPD,qCAOC,CAAA"}
