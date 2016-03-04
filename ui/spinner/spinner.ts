@@ -1,15 +1,38 @@
-import {Component, Input, ElementRef, OnChanges} from "angular2/core"
+import {Component, Input, OnChanges, ViewChild} from "angular2/core"
 import {NgClass} from "angular2/common"
+import {Block} from "../block/block"
 
 @Component({
 	selector: "ui-spinner",
 	styleUrls: ["./bliss/ui/spinner/spinner.css"],
-	template: ``,
+	directives: [Block],
+	template: `
+	<ui-block [z]="z"></ui-block>
+	`,
 	host: {
-		"[class.visible]": "visible"
+		"[class.visible]": "isVisible",
+		"[class.hidden]": "isHidden"
 	}
 })
-export class Spinner
+export class Spinner implements OnChanges
 {
-	@Input() visible:boolean = false;
+	@Input() visible:boolean = true;
+	@Input() z:number = 2;
+	
+	isVisible:boolean = true;
+	isHidden:boolean = false;
+	
+	ngOnChanges() {
+		if (this.visible) {
+			this.isHidden = false;
+			setTimeout(() => {
+				this.isVisible = true;
+			}, 10)
+		} else {
+			this.isVisible = false;
+			setTimeout(() => {
+				this.isHidden = true;
+			}, 300);
+		}
+	}
 }
