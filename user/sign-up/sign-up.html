@@ -1,0 +1,25 @@
+<ui-block *ngIf="user">
+	<ng-content select="header"></ng-content>
+	
+	<section>
+		<ng-content></ng-content>
+		
+		<form (submit)="submit()">
+			<div class="form-group">
+				<label>Email Address</label>
+				<input class="form-control" type="email" [(ngModel)]="user.email" required>
+			</div>
+			<div class="form-group">
+				<label>Password</label>
+				<input class="form-control" type="password" [(ngModel)]="user.password" required>
+			</div>
+			<div class="form-group">
+				<label>Display Name</label>
+				<input class="form-control" type="text" [(ngModel)]="user.displayName" required>
+			</div>
+			<div class="form-group">
+				<input class="btn btn-primary btn-block" type="submit" value="Create Account">
+			</div>
+		</form>
+	</section>
+</ui-block>

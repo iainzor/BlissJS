@@ -23,16 +23,71 @@ System.register(["angular2/core", "angular2/http"], function(exports_1) {
                 function UserService(http) {
                     this.http = http;
                 }
+                UserService.prototype.signIn = function (user) {
+                    var _this = this;
+                    return new Promise(function (resolve, reject) {
+                        _this.http.post("sign-in.json", JSON.stringify(user))
+                            .map(function (res) { return res.json(); })
+                            .subscribe(function (session) {
+                            for (var i in session.user) {
+                                user[i] = session.user[i];
+                            }
+                            resolve(user);
+                        }, function (error) {
+                            if (error.json) {
+                                reject(error.json());
+                            }
+                            else {
+                                reject(error);
+                            }
+                        });
+                    });
+                };
                 UserService.prototype.signOut = function (user) {
                     var _this = this;
                     var promise = new Promise(function (resolve, reject) {
                         _this.http.post("sign-out.json", "")
                             .map(function (res) { return res.json(); })
                             .subscribe(function (response) {
+                            for (var i in response) {
+                                user[i] = response[i];
+                            }
                             resolve(true);
+                        }, function (error) {
+                            if (error.json) {
+                                reject(error.json());
+                            }
+                            else {
+                                reject(error);
+                            }
                         });
                     });
                     return promise;
+                };
+                UserService.prototype.signUp = function (user) {
+                    var _this = this;
+                    return new Promise(function (resolve, reject) {
+                        _this.http
+                            .post("sign-up.json", JSON.stringify({
+                            email: user.email,
+                            password: user.password,
+                            displayName: user.displayName
+                        }))
+                            .map(function (res) { return res.json(); })
+                            .subscribe(function (response) {
+                            if (response.result && response.result === "error") {
+                                reject(response);
+                            }
+                            else {
+                                for (var i in response) {
+                                    user[i] = response[i];
+                                }
+                                resolve(true);
+                            }
+                        }, function (error) {
+                            reject(error.json ? error.json() : error);
+                        });
+                    });
                 };
                 UserService = __decorate([
                     core_1.Injectable(), 

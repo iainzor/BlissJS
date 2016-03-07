@@ -4,7 +4,7 @@ export class User implements UserInterface
 {
 	public id:number = 0
 	public email:string = null
-	private password:string = null
+	public password:string = null
 	public displayName:string = null
 	public isActive:boolean = false
 	public created:number
