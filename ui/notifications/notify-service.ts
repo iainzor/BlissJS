@@ -16,7 +16,7 @@ export class NotifyService
 		);
 	}
 	
-	subscribe(next?:any, error?:any, complete?:any) : Subscription<MessageDefinition> {
+	subscribe(next?:any, error?:any, complete?:any) {
 		return this.source.subscribe(next, error, complete);
 	}
 	

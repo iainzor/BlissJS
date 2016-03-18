@@ -19,6 +19,8 @@ export class SignIn
 	constructor(private userService:UserService) {}
 	
 	submit() {
-		this.userService.signIn(this.user);
+		this.userService.signIn(this.user).then(() => {
+			this.success.emit(this.user);
+		});
 	}
 }
