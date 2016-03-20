@@ -1,6 +1,4 @@
-System.register(["./bliss"], function(exports_1, context_1) {
-    "use strict";
-    var __moduleName = context_1 && context_1.id;
+System.register(["./bliss"], function(exports_1) {
     var bliss_1;
     var BLISS_PROVIDERS;
     return {

@@ -95,7 +95,7 @@ System.register(["angular2/core", "angular2/common", "../tooltip/tooltip", "../b
                     __metadata('design:paramtypes', [theme_1.Theme, core_1.ElementRef])
                 ], Fab);
                 return Fab;
-            }());
+            })();
             exports_1("Fab", Fab);
         }
     }

@@ -1,1 +1,1 @@
-{"version":3,"file":"user-role.js","sourceRoot":"","sources":["user-role.ts"],"names":[],"mappings":";;;;;;;;;;;;;;;;YAEA;gBAA8B,4BAAI;gBAAlC;oBAA8B,8BAAI;oBAE1B,gBAAW,GAAU,IAAI,CAAA;gBACjC,CAAC;gBAAD,eAAC;YAAD,CAAC,AAHD,CAA8B,WAAI,GAGjC;YAHD,+BAGC,CAAA"}
+{"version":3,"file":"user-role.js","sourceRoot":"","sources":["user-role.ts"],"names":["UserRole","UserRole.constructor"],"mappings":";;;;;;;;;;;;;;YAEA;gBAA8BA,4BAAIA;gBAAlCA;oBAA8BC,8BAAIA;oBAE1BA,gBAAWA,GAAUA,IAAIA,CAAAA;gBACjCA,CAACA;gBAADD,eAACA;YAADA,CAACA,AAHD,EAA8B,WAAI,EAGjC;YAHD,+BAGC,CAAA"}

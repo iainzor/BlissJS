@@ -1,6 +1,4 @@
-System.register(["./user/user"], function(exports_1, context_1) {
-    "use strict";
-    var __moduleName = context_1 && context_1.id;
+System.register(["./user/user"], function(exports_1) {
     var user_1;
     var BlissConfig;
     return {
@@ -14,7 +12,7 @@ System.register(["./user/user"], function(exports_1, context_1) {
                     this.user = new user_1.User();
                 }
                 return BlissConfig;
-            }());
+            })();
             exports_1("BlissConfig", BlissConfig);
         }
     }
