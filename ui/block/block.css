@@ -21,7 +21,7 @@
 	:host > section,
 	:host > header,
 	:host > footer {
-		border-bottom: 1px solid rgba(0,0,0,.05);
+		border-bottom: 1px solid rgba(0,0,0,.1);
 		padding: 20px;
 	}
 	
@@ -70,3 +70,17 @@
 				0 6px 30px 5px rgba(0, 0, 0, 0.12), 
 				0 8px 10px -5px rgba(0, 0, 0, 0.4);
 }
+
+
+:host > table > tbody > tr > td,
+:host > table > thead > tr > th { padding: 10px; }
+
+:host > table td:first-child,
+:host > table th:first-child  { padding-left: 20px; }
+
+:host > table td:last-child,
+:host > table th:last-child { padding-right: 20px; }
+
+:host > table tbody:first-child > tr:first-child > td {
+	border-top: none;
+} 
