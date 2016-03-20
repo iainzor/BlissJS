@@ -70,8 +70,8 @@ System.register(["angular2/core", "angular2/http"], function(exports_1) {
                         _this.http
                             .post("sign-up.json", JSON.stringify({
                             email: user.email,
-                            password: user.password,
-                            displayName: user.displayName
+                            username: user.username,
+                            password: user.password
                         }))
                             .map(function (res) { return res.json(); })
                             .subscribe(function (response) {

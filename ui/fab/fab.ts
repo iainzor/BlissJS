@@ -1,7 +1,8 @@
-import {Component, ElementRef, Input, OnChanges, OnInit, OnDestroy} from "angular2/core"
+import {Component, ElementRef, ViewQuery, QueryList, OnChanges, OnInit, OnDestroy} from "angular2/core"
 import {NgIf} from "angular2/common"
 import {Tooltip} from "../tooltip/tooltip"
 import {Block} from "../block/block"
+import {Theme} from "../theme"
 
 @Component({
 	selector: "ui-fab",
@@ -9,10 +10,12 @@ import {Block} from "../block/block"
 	inputs: ["title", "icon", "bottom", "top", "left", "right", "z", "isVisible"],
 	directives: [Tooltip, Block, NgIf],
 	host: {
-		"[class.visible]": "isVisible && isReady"
+		"[class.visible]": "isVisible && isReady",
+		"(mouseenter)": "onMouseEnter()",
+		"(mouseleave)": "onMouseLeave()"
 	},
 	template: `
-	<ui-block [z]="z">
+	<ui-block [z]="z" [style.background-color]="backgroundColor" [style.color]="iconColor">
 		<ui-tooltip *ngIf="title" [title]="title"></ui-tooltip>
 		<i class="material-icons">{{icon}}</i>
 	</ui-block>
@@ -30,11 +33,21 @@ export class Fab implements OnChanges, OnInit, OnDestroy
 	left:number;
 	right:number;
 	
-	constructor(private _elRef:ElementRef) {}
+	backgroundColor:string;
+	iconColor:string;
+	
+	constructor(private theme:Theme, private _elRef:ElementRef) {
+		this.backgroundColor = theme.accentBackgroundColor;
+		this.iconColor = theme.accentTextColor;
+	}
 	
 	ngOnInit() {
 		this.position();
-		this.isReady = true;
+		
+		setTimeout(() => {
+			this.isReady = true;
+		}, 300);
+		
 		window.addEventListener("resize", this.position.bind(this));
 	}
 	
@@ -66,5 +79,13 @@ export class Fab implements OnChanges, OnInit, OnDestroy
 		} else if (typeof this.right !== "undefined") {
 			fab.style.right = this.right +"px";
 		}
+	}
+	
+	onMouseEnter() {
+		this.z += 2;
+	}
+	
+	onMouseLeave() {
+		this.z -= 2;
 	}
 }

@@ -8,6 +8,10 @@
 	padding: 0;
 	transition: all .3s ease-in-out;
 }
+:host[plain] {
+	background-color: transparent;
+	box-shadow: none !important;
+}
 
 :host(.is-error) { background-color: #F44336; color: #fff; }
 :host(.is-info) { background-color: #78909C; color: #fff; }

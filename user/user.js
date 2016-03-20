@@ -8,6 +8,7 @@ System.register([], function(exports_1) {
                     this.id = 0;
                     this.email = null;
                     this.password = null;
+                    this.username = null;
                     this.displayName = null;
                     this.isActive = false;
                 }

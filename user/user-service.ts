@@ -65,8 +65,8 @@ export class UserService
 				this.http
 					.post("sign-up.json", JSON.stringify({
 						email: user.email,
-						password: user.password,
-						displayName: user.displayName
+						username: user.username,
+						password: user.password
 					}))
 					.map(res => res.json())
 					.subscribe(

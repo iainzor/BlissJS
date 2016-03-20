@@ -5,18 +5,17 @@
 		<ng-content></ng-content>
 		
 		<form (submit)="submit()">
-			<div class="form-group">
-				<label>Email Address</label>
-				<input class="form-control" type="email" [(ngModel)]="user.email" required>
+			<div *ngFor="#field of fields"
+				class="form-group"
+				[class.has-error]="field.error"
+			>
+				<label>{{field.label}}</label>
+				<input [attr.type]="field.type" class="form-control" [(ngModel)]="user[field.key]" required>
+				<div class="help-block" *ngIf="field.error">
+					{{field.error}}
+				</div>
 			</div>
-			<div class="form-group">
-				<label>Password</label>
-				<input class="form-control" type="password" [(ngModel)]="user.password" required>
-			</div>
-			<div class="form-group">
-				<label>Display Name</label>
-				<input class="form-control" type="text" [(ngModel)]="user.displayName" required>
-			</div>
+			
 			<div class="form-group">
 				<input class="btn btn-primary btn-block" type="submit" value="Create Account">
 			</div>

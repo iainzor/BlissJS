@@ -1,4 +1,4 @@
-System.register(["angular2/core", "angular2/common", "../tooltip/tooltip", "../block/block"], function(exports_1) {
+System.register(["angular2/core", "angular2/common", "../tooltip/tooltip", "../block/block", "../theme"], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +8,7 @@ System.register(["angular2/core", "angular2/common", "../tooltip/tooltip", "../b
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, common_1, tooltip_1, block_1;
+    var core_1, common_1, tooltip_1, block_1, theme_1;
     var Fab;
     return {
         setters:[
@@ -23,18 +23,27 @@ System.register(["angular2/core", "angular2/common", "../tooltip/tooltip", "../b
             },
             function (block_1_1) {
                 block_1 = block_1_1;
+            },
+            function (theme_1_1) {
+                theme_1 = theme_1_1;
             }],
         execute: function() {
             Fab = (function () {
-                function Fab(_elRef) {
+                function Fab(theme, _elRef) {
+                    this.theme = theme;
                     this._elRef = _elRef;
                     this.isReady = false;
                     this.isVisible = true;
                     this.z = 2;
+                    this.backgroundColor = theme.accentBackgroundColor;
+                    this.iconColor = theme.accentTextColor;
                 }
                 Fab.prototype.ngOnInit = function () {
+                    var _this = this;
                     this.position();
-                    this.isReady = true;
+                    setTimeout(function () {
+                        _this.isReady = true;
+                    }, 300);
                     window.addEventListener("resize", this.position.bind(this));
                 };
                 Fab.prototype.ngOnDestroy = function () {
@@ -64,6 +73,12 @@ System.register(["angular2/core", "angular2/common", "../tooltip/tooltip", "../b
                         fab.style.right = this.right + "px";
                     }
                 };
+                Fab.prototype.onMouseEnter = function () {
+                    this.z += 2;
+                };
+                Fab.prototype.onMouseLeave = function () {
+                    this.z -= 2;
+                };
                 Fab = __decorate([
                     core_1.Component({
                         selector: "ui-fab",
@@ -71,11 +86,13 @@ System.register(["angular2/core", "angular2/common", "../tooltip/tooltip", "../b
                         inputs: ["title", "icon", "bottom", "top", "left", "right", "z", "isVisible"],
                         directives: [tooltip_1.Tooltip, block_1.Block, common_1.NgIf],
                         host: {
-                            "[class.visible]": "isVisible && isReady"
+                            "[class.visible]": "isVisible && isReady",
+                            "(mouseenter)": "onMouseEnter()",
+                            "(mouseleave)": "onMouseLeave()"
                         },
-                        template: "\n\t<ui-block [z]=\"z\">\n\t\t<ui-tooltip *ngIf=\"title\" [title]=\"title\"></ui-tooltip>\n\t\t<i class=\"material-icons\">{{icon}}</i>\n\t</ui-block>\n\t"
+                        template: "\n\t<ui-block [z]=\"z\" [style.background-color]=\"backgroundColor\" [style.color]=\"iconColor\">\n\t\t<ui-tooltip *ngIf=\"title\" [title]=\"title\"></ui-tooltip>\n\t\t<i class=\"material-icons\">{{icon}}</i>\n\t</ui-block>\n\t"
                     }), 
-                    __metadata('design:paramtypes', [core_1.ElementRef])
+                    __metadata('design:paramtypes', [theme_1.Theme, core_1.ElementRef])
                 ], Fab);
                 return Fab;
             })();

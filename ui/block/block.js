@@ -44,6 +44,9 @@ System.register(["angular2/core"], function(exports_1) {
                             classList.remove(this._zClass);
                         }
                         if (z) {
+                            if (z > 5) {
+                                z = 5;
+                            }
                             this._zClass = "z-" + z;
                             classList.add(this._zClass);
                         }
