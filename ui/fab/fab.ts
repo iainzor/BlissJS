@@ -15,7 +15,14 @@ import {Theme} from "../theme"
 		"(mouseleave)": "onMouseLeave()"
 	},
 	template: `
-	<ui-block [z]="z" [style.background-color]="backgroundColor" [style.color]="iconColor">
+	<ui-block 	[z]="z" 
+				[style.background-color]="backgroundColor" 
+				[style.color]="iconColor"
+				[style.top]="top ? top+'px' : auto"
+				[style.left]="left ? left+'px' : auto"
+				[style.bottom]="bottom ? bottom+'px' : auto"
+				[style.right]="right ? right+'px' : auto"
+	>
 		<ui-tooltip *ngIf="title" [title]="title"></ui-tooltip>
 		<i class="material-icons">{{icon}}</i>
 	</ui-block>
@@ -60,6 +67,7 @@ export class Fab implements OnChanges, OnInit, OnDestroy
 	}
 	
 	position() {
+		/*
 		let el:HTMLElement = this._elRef.nativeElement;
 		let fab = <HTMLElement> el.querySelector("ui-block");
 		let elCoords = el.getBoundingClientRect();
@@ -79,6 +87,7 @@ export class Fab implements OnChanges, OnInit, OnDestroy
 		} else if (typeof this.right !== "undefined") {
 			fab.style.right = this.right +"px";
 		}
+		*/
 	}
 	
 	onMouseEnter() {

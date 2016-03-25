@@ -55,25 +55,27 @@ System.register(["angular2/core", "angular2/common", "../tooltip/tooltip", "../b
                     this.position();
                 };
                 Fab.prototype.position = function () {
-                    var el = this._elRef.nativeElement;
-                    var fab = el.querySelector("ui-block");
-                    var elCoords = el.getBoundingClientRect();
-                    var parent = el.parentElement;
-                    var parentCoords = parent.getBoundingClientRect();
-                    var top;
-                    var left;
+                    /*
+                    let el:HTMLElement = this._elRef.nativeElement;
+                    let fab = <HTMLElement> el.querySelector("ui-block");
+                    let elCoords = el.getBoundingClientRect();
+                    let parent = el.parentElement;
+                    let parentCoords = parent.getBoundingClientRect();
+                    let top;
+                    let left;
+                    
                     if (typeof this.top !== "undefined") {
-                        fab.style.top = this.top + "px";
+                        fab.style.top = this.top +"px";
+                    } else if (typeof this.bottom !== "undefined") {
+                        fab.style.bottom = this.bottom +"px";
                     }
-                    else if (typeof this.bottom !== "undefined") {
-                        fab.style.bottom = this.bottom + "px";
-                    }
+                    
                     if (typeof this.left !== "undefined") {
-                        fab.style.left = this.left + "px";
+                        fab.style.left = this.left +"px";
+                    } else if (typeof this.right !== "undefined") {
+                        fab.style.right = this.right +"px";
                     }
-                    else if (typeof this.right !== "undefined") {
-                        fab.style.right = this.right + "px";
-                    }
+                    */
                 };
                 Fab.prototype.onMouseEnter = function () {
                     this.z += 2;
@@ -92,7 +94,7 @@ System.register(["angular2/core", "angular2/common", "../tooltip/tooltip", "../b
                             "(mouseenter)": "onMouseEnter()",
                             "(mouseleave)": "onMouseLeave()"
                         },
-                        template: "\n\t<ui-block [z]=\"z\" [style.background-color]=\"backgroundColor\" [style.color]=\"iconColor\">\n\t\t<ui-tooltip *ngIf=\"title\" [title]=\"title\"></ui-tooltip>\n\t\t<i class=\"material-icons\">{{icon}}</i>\n\t</ui-block>\n\t"
+                        template: "\n\t<ui-block \t[z]=\"z\" \n\t\t\t\t[style.background-color]=\"backgroundColor\" \n\t\t\t\t[style.color]=\"iconColor\"\n\t\t\t\t[style.top]=\"top ? top+'px' : auto\"\n\t\t\t\t[style.left]=\"left ? left+'px' : auto\"\n\t\t\t\t[style.bottom]=\"bottom ? bottom+'px' : auto\"\n\t\t\t\t[style.right]=\"right ? right+'px' : auto\"\n\t>\n\t\t<ui-tooltip *ngIf=\"title\" [title]=\"title\"></ui-tooltip>\n\t\t<i class=\"material-icons\">{{icon}}</i>\n\t</ui-block>\n\t"
                     }), 
                     __metadata('design:paramtypes', [theme_1.Theme, core_1.ElementRef])
                 ], Fab);
