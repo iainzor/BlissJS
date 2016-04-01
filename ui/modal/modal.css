@@ -1,0 +1,45 @@
+:host {
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 0;
+	opacity: 0;
+	background-color: rgba(0,0,0,.5);
+	transition: all .3s ease-in-out;
+	visibility: hidden;
+	overflow: auto;
+}
+
+:host(.open) {
+	opacity: 1;
+	visibility: visible;
+	z-index: 1000;
+}
+
+	:host > .backdrop {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: 0;
+	}
+	
+	:host > .content {
+		position: relative;
+		z-index: 1;
+		max-width: 400px;
+		margin: 0 auto;
+		padding: 20px;
+		transform: scale(.5);
+		opacity: 0;
+		transition: all .3s ease-in-out;
+		transition-delay: .1s;
+	}
+	:host(.open) > .content {
+		transform: scale(1);
+		opacity: 1;
+	}
