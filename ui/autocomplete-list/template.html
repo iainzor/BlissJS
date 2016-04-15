@@ -1,0 +1,40 @@
+<div class="form-group">
+	<input 	type="text"
+			class="form-control" 
+			[(ngModel)]="term"
+			[ngFormControl]="termControl"
+			[attr.placeholder]="placeholder"
+			(keydown)="onKeyDown($event)"
+			(focus)="onFocus()"
+			(blur)="onBlur()">
+
+	<ui-block class="results" z="2" is="dark" *ngIf="_results">
+		<section compact>
+			<ul class="nav nav-pills nav-stacked" *ngIf="_results.length">
+				<li *ngFor="#result of _results; #i = index" [class.active]="i === selected">
+					<a href="#" (click)="add($event, result)">
+						{{resultLabel(result)}}
+					</a>
+				</li>
+			</ul>
+			<p class="text-center" *ngIf="!_results.length">
+				<em>No results found be found</em>
+			</p>
+		</section>
+	</ui-block>
+</div>
+
+<table class="table list" *ngIf="list && list.length">
+	<tbody>
+		<tr *ngFor="#item of list">
+			<td width="100%">
+				{{resultLabel(item)}}
+			</td>
+			<td>
+				<a href="#" class="material-button" (click)="remove($event, item)">
+					<i class="material-icons">remove</i>
+				</a>
+			</td>
+		</tr>
+	</tbody>
+</table>

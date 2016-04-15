@@ -5,13 +5,22 @@ import {Component, Input, Output, EventEmitter} from "angular2/core"
 	styleUrls: ["./bliss/ui/dropdown/dropdown.css"],
 	template: `
 		<ng-content></ng-content>
-		<i class="arrow"></i>
-		<div class="content" (click)="onContentClick()">
+		
+		<i 	class="arrow"
+			[style.border-right-color]="arrowColor"
+			[style.border-bottom-color]="arrowColor"
+		></i>
+		
+		<div 	class="content" 
+				[style.left]="leftPosition"
+				[style.right]="rightPosition"
+				(click)="onContentClick()"
+		>
 			<ng-content select="[dropdown-content]"></ng-content>
 		</div>
 	`,
 	host: {
-		"[class.open]": "isOpen",
+		"[class.open]": "open",
 		"(click)": "toggleContent($event)"
 	}
 })
@@ -19,10 +28,20 @@ export class Dropdown
 {
 	private ignoreClick:boolean = false;
 	
-	@Input() isOpen:boolean = false;
+	@Input() arrowColor:string = "#fff";
+	@Input() position:string = "right";
 	
-	@Output() open:EventEmitter<any> = new EventEmitter<any>();
+	@Input() open:boolean = false;
+	@Output() openChange:EventEmitter<boolean> = new EventEmitter<boolean>();
 	@Output() close:EventEmitter<any> = new EventEmitter<any>();
+	
+	get leftPosition() : string {
+		return this.position === "left" ? "0" : null;
+	}
+	
+	get rightPosition() : string {
+		return this.position === "right" ? "0" : null;
+	}
 	
 	handleEvent(e:MouseEvent) {
 		switch (e.type) {
@@ -33,7 +52,7 @@ export class Dropdown
 	}
 	
 	toggleContent(e:MouseEvent) {
-		if (this.isOpen) {
+		if (this.open) {
 			if (!this.ignoreClick) {
 				this.closeContent();
 			} else {
@@ -46,15 +65,16 @@ export class Dropdown
 	}
 	
 	openContent() {
-		this.isOpen = true;
-		this.open.emit(null);
+		this.open = true;
+		this.openChange.emit(this.open);
 		
 		document.addEventListener("click", this);
 	}
 	
 	closeContent() {
 		this.ignoreClick = false;
-		this.isOpen = false;
+		this.open = false;
+		this.openChange.emit(this.open);
 		this.close.emit(null);
 		
 		document.removeEventListener("click", this);

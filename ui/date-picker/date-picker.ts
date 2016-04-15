@@ -44,8 +44,8 @@ export class DatePicker implements OnChanges
 				parseInt(timeParts[1])
 			);
 			this.dateChange.emit(this.date);
-			
-			console.log(this.dateString, this.date);
+		} else {
+			this.dateChange.emit(null);
 		}
 	}
 }

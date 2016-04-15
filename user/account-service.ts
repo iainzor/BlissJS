@@ -1,5 +1,5 @@
 import {Injectable} from "angular2/core"
-import {Http} from "angular2/http"
+import {Http, URLSearchParams} from "angular2/http"
 import {User, UserInterface} from "./user"
 
 @Injectable()
@@ -29,6 +29,45 @@ export class AccountService
 					);
 			}
 		)
+	}
+	
+	getSettings(moduleName:string) : Promise<{[key:string]:any}> {
+		let search = new URLSearchParams();
+		search.set("moduleName", moduleName);
+		
+		return new Promise<{[key:string]:any}>(
+			(resolve, reject) => {
+				this.http
+					.get("account/settings.json", {search:search})
+					.map(res => res.json())
+					.subscribe(
+						(response) => {
+							resolve(response);
+						},
+						(error) => {
+							reject(error.json ? error.json() : error);
+						}
+					);
+			}
+		);
+	}
+	
+	saveSettings(moduleName:string, settings:{[key:string]:any}) : Promise<boolean> {
+		return new Promise<boolean>(
+			(resolve, reject) => {
+				this.http
+					.post("account/settings.json", JSON.stringify(settings))
+					.map(res => res.json())
+					.subscribe(
+						() => {
+							resolve(true)
+						},
+						(error) => {
+							reject(error.json ? error.json() : error);
+						}
+					);
+			}
+		);
 	}
 }
 

@@ -43,6 +43,34 @@ System.register(["angular2/core", "angular2/http"], function(exports_1, context_
                         });
                     });
                 };
+                AccountService.prototype.getSettings = function (moduleName) {
+                    var _this = this;
+                    var search = new http_1.URLSearchParams();
+                    search.set("moduleName", moduleName);
+                    return new Promise(function (resolve, reject) {
+                        _this.http
+                            .get("account/settings.json", { search: search })
+                            .map(function (res) { return res.json(); })
+                            .subscribe(function (response) {
+                            resolve(response);
+                        }, function (error) {
+                            reject(error.json ? error.json() : error);
+                        });
+                    });
+                };
+                AccountService.prototype.saveSettings = function (moduleName, settings) {
+                    var _this = this;
+                    return new Promise(function (resolve, reject) {
+                        _this.http
+                            .post("account/settings.json", JSON.stringify(settings))
+                            .map(function (res) { return res.json(); })
+                            .subscribe(function () {
+                            resolve(true);
+                        }, function (error) {
+                            reject(error.json ? error.json() : error);
+                        });
+                    });
+                };
                 AccountService = __decorate([
                     core_1.Injectable(), 
                     __metadata('design:paramtypes', [http_1.Http])

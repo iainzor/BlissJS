@@ -39,7 +39,9 @@ System.register(["angular2/core"], function(exports_1, context_1) {
                         this.dateString = value;
                         this.date = new Date(parseInt(parts[0]), parseInt(parts[1]) - 1, parseInt(parts[2]), parseInt(timeParts[0]), parseInt(timeParts[1]));
                         this.dateChange.emit(this.date);
-                        console.log(this.dateString, this.date);
+                    }
+                    else {
+                        this.dateChange.emit(null);
                     }
                 };
                 __decorate([

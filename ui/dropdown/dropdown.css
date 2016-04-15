@@ -8,7 +8,6 @@
 	cursor: default;
 	position: absolute;
 	top: 100%;
-	right: 0;
 	margin-top: 5px;
 	z-index: 1;
 	transition: all .2s ease-in-out;
@@ -28,7 +27,7 @@
 	z-index: 0;
 	bottom: 0;
 	right: 0;
-	border: 6px solid #fff;
+	border: 6px solid;
 	border-top-color: transparent;
 	border-left-color: transparent;
 	opacity: .75;

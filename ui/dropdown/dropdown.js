@@ -21,10 +21,26 @@ System.register(["angular2/core"], function(exports_1, context_1) {
             Dropdown = (function () {
                 function Dropdown() {
                     this.ignoreClick = false;
-                    this.isOpen = false;
-                    this.open = new core_1.EventEmitter();
+                    this.arrowColor = "#fff";
+                    this.position = "right";
+                    this.open = false;
+                    this.openChange = new core_1.EventEmitter();
                     this.close = new core_1.EventEmitter();
                 }
+                Object.defineProperty(Dropdown.prototype, "leftPosition", {
+                    get: function () {
+                        return this.position === "left" ? "0" : null;
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                Object.defineProperty(Dropdown.prototype, "rightPosition", {
+                    get: function () {
+                        return this.position === "right" ? "0" : null;
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
                 Dropdown.prototype.handleEvent = function (e) {
                     switch (e.type) {
                         case "click":
@@ -33,7 +49,7 @@ System.register(["angular2/core"], function(exports_1, context_1) {
                     }
                 };
                 Dropdown.prototype.toggleContent = function (e) {
-                    if (this.isOpen) {
+                    if (this.open) {
                         if (!this.ignoreClick) {
                             this.closeContent();
                         }
@@ -47,13 +63,14 @@ System.register(["angular2/core"], function(exports_1, context_1) {
                     }
                 };
                 Dropdown.prototype.openContent = function () {
-                    this.isOpen = true;
-                    this.open.emit(null);
+                    this.open = true;
+                    this.openChange.emit(this.open);
                     document.addEventListener("click", this);
                 };
                 Dropdown.prototype.closeContent = function () {
                     this.ignoreClick = false;
-                    this.isOpen = false;
+                    this.open = false;
+                    this.openChange.emit(this.open);
                     this.close.emit(null);
                     document.removeEventListener("click", this);
                 };
@@ -70,12 +87,20 @@ System.register(["angular2/core"], function(exports_1, context_1) {
                 };
                 __decorate([
                     core_1.Input(), 
+                    __metadata('design:type', String)
+                ], Dropdown.prototype, "arrowColor", void 0);
+                __decorate([
+                    core_1.Input(), 
+                    __metadata('design:type', String)
+                ], Dropdown.prototype, "position", void 0);
+                __decorate([
+                    core_1.Input(), 
                     __metadata('design:type', Boolean)
-                ], Dropdown.prototype, "isOpen", void 0);
+                ], Dropdown.prototype, "open", void 0);
                 __decorate([
                     core_1.Output(), 
                     __metadata('design:type', core_1.EventEmitter)
-                ], Dropdown.prototype, "open", void 0);
+                ], Dropdown.prototype, "openChange", void 0);
                 __decorate([
                     core_1.Output(), 
                     __metadata('design:type', core_1.EventEmitter)
@@ -84,9 +109,9 @@ System.register(["angular2/core"], function(exports_1, context_1) {
                     core_1.Component({
                         selector: "ui-dropdown",
                         styleUrls: ["./bliss/ui/dropdown/dropdown.css"],
-                        template: "\n\t\t<ng-content></ng-content>\n\t\t<i class=\"arrow\"></i>\n\t\t<div class=\"content\" (click)=\"onContentClick()\">\n\t\t\t<ng-content select=\"[dropdown-content]\"></ng-content>\n\t\t</div>\n\t",
+                        template: "\n\t\t<ng-content></ng-content>\n\t\t\n\t\t<i \tclass=\"arrow\"\n\t\t\t[style.border-right-color]=\"arrowColor\"\n\t\t\t[style.border-bottom-color]=\"arrowColor\"\n\t\t></i>\n\t\t\n\t\t<div \tclass=\"content\" \n\t\t\t\t[style.left]=\"leftPosition\"\n\t\t\t\t[style.right]=\"rightPosition\"\n\t\t\t\t(click)=\"onContentClick()\"\n\t\t>\n\t\t\t<ng-content select=\"[dropdown-content]\"></ng-content>\n\t\t</div>\n\t",
                         host: {
-                            "[class.open]": "isOpen",
+                            "[class.open]": "open",
                             "(click)": "toggleContent($event)"
                         }
                     }), 
