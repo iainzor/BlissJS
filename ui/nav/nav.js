@@ -37,7 +37,7 @@ System.register(["angular2/core", "angular2/common", "angular2/router", "./nav-p
                 Nav = __decorate([
                     core_1.Component({
                         selector: "ui-nav",
-                        template: "\n\t\t<section class=\"pages\">\n\t\t\t<template ngFor #page [ngForOf]=\"nav?.pages\">\n\t\t\t\t<template [ngIf]=\"!page.is || page.is === 'link'\">\n\t\t\t\t\t<ui-nav-page \n\t\t\t\t\t\t[page]=\"page\"\n\t\t\t\t\t\t[routerLink]=\"[page.path]\">\n\t\t\t\t\t</ui-nav-page>\n\t\t\t\t</template>\n\t\t\t\t<template [ngIf]=\"page.is === 'spacer'\">\n\t\t\t\t\t<div class=\"spacer\"></div>\n\t\t\t\t</template>\n\t\t\t</template>\n\t\t</section>\n\t",
+                        template: "\n\t\t<section class=\"pages\">\n\t\t\t<template ngFor let-page [ngForOf]=\"nav?.pages\">\n\t\t\t\t<template [ngIf]=\"!page.is || page.is === 'link'\">\n\t\t\t\t\t<ui-nav-page \n\t\t\t\t\t\t[page]=\"page\"\n\t\t\t\t\t\t[routerLink]=\"[page.path]\">\n\t\t\t\t\t</ui-nav-page>\n\t\t\t\t</template>\n\t\t\t\t<template [ngIf]=\"page.is === 'spacer'\">\n\t\t\t\t\t<div class=\"spacer\"></div>\n\t\t\t\t</template>\n\t\t\t</template>\n\t\t</section>\n\t",
                         directives: [common_1.CORE_DIRECTIVES, nav_page_1.NavPage, router_1.RouterLink],
                         styleUrls: [
                             "./bliss/ui/nav/nav.css"

@@ -7,6 +7,7 @@ import {Component, Input, Output, EventEmitter} from "angular2/core"
 		<ng-content></ng-content>
 		
 		<i 	class="arrow"
+			*ngIf="arrow"
 			[style.border-right-color]="arrowColor"
 			[style.border-bottom-color]="arrowColor"
 		></i>
@@ -20,6 +21,7 @@ import {Component, Input, Output, EventEmitter} from "angular2/core"
 		</div>
 	`,
 	host: {
+		"[class.has-arrow]": "arrow",
 		"[class.open]": "open",
 		"(click)": "toggleContent($event)"
 	}
@@ -28,6 +30,7 @@ export class Dropdown
 {
 	private ignoreClick:boolean = false;
 	
+	@Input() arrow:boolean = true;
 	@Input() arrowColor:string = "#fff";
 	@Input() position:string = "right";
 	

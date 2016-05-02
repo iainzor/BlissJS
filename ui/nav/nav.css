@@ -12,10 +12,10 @@
 	display: flex;
 	flex-direction: column;
 }
-	:host > .pages > .spacer {
+	:host > .pages .spacer {
 		flex-grow: 1;
 	}
-	:host > .pages > ui-nav-page {
+	:host > .pages ui-nav-page {
 		position: relative;
 	}
 

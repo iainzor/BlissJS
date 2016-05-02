@@ -7,7 +7,7 @@ import {NavPageInterface, NavPage} from "./nav-page"
 	selector: "ui-nav",
 	template: `
 		<section class="pages">
-			<template ngFor #page [ngForOf]="nav?.pages">
+			<template ngFor let-page [ngForOf]="nav?.pages">
 				<template [ngIf]="!page.is || page.is === 'link'">
 					<ui-nav-page 
 						[page]="page"

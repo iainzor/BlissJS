@@ -11,7 +11,7 @@
 	<ui-block class="results" z="2" is="dark" *ngIf="_results">
 		<section compact>
 			<ul class="nav nav-pills nav-stacked" *ngIf="_results.length">
-				<li *ngFor="#result of _results; #i = index" [class.active]="i === selected">
+				<li *ngFor="let result of _results; let i = index" [class.active]="i === selected">
 					<a href="#" (click)="add($event, result)">
 						{{resultLabel(result)}}
 					</a>
@@ -26,7 +26,7 @@
 
 <table class="table list" *ngIf="list && list.length">
 	<tbody>
-		<tr *ngFor="#item of list">
+		<tr *ngFor="let item of list">
 			<td width="100%">
 				{{resultLabel(item)}}
 			</td>

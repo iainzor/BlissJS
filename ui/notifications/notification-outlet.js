@@ -52,7 +52,7 @@ System.register(["angular2/core", "./notify-service", "../block/block"], functio
                     core_1.Component({
                         selector: "ui-notification-outlet",
                         directives: [block_1.Block],
-                        template: "\n\t\t<ui-block *ngFor=\"#message of messages\"\n\t\t\t[z]=\"2\" \n\t\t\t[is]=\"message.is\"\n\t\t\t[class.incoming]=\"message.incoming\"\n\t\t\t[class.outgoing]=\"message.outgoing\"\n\t\t>\n\t\t\t<section>\n\t\t\t\t<p>{{message.body}}</p>\n\t\t\t</section>\n\t\t</ui-block>\n\t",
+                        template: "\n\t\t<ui-block *ngFor=\"let message of messages\"\n\t\t\t[z]=\"2\" \n\t\t\t[is]=\"message.is\"\n\t\t\t[class.incoming]=\"message.incoming\"\n\t\t\t[class.outgoing]=\"message.outgoing\"\n\t\t>\n\t\t\t<section>\n\t\t\t\t<p>{{message.body}}</p>\n\t\t\t</section>\n\t\t</ui-block>\n\t",
                         styles: ["\n\t\t:host > ui-block {\n\t\t\tmin-width: 200px;\n\t\t\ttransform: translateY(50px);\n\t\t\topacity: 0;\n\t\t\tmargin-bottom: 20px;\n\t\t}\n\t\t:host > ui-block.incoming {\n\t\t\ttransform: translateY(0);\n\t\t\topacity: 1;\n\t\t}\n\t\t:host > ui-block.outgoing {\n\t\t\ttransform: translateY(0) translateX(50px);\n\t\t}\n\t"]
                     }), 
                     __metadata('design:paramtypes', [notify_service_1.NotifyService])

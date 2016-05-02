@@ -12,6 +12,9 @@
 	background-color: transparent;
 	box-shadow: none !important;
 }
+:host[hidden] {
+	display: none;
+}
 
 :host(.is-error) { background-color: #F44336; color: #fff; }
 

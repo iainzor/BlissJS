@@ -7,7 +7,7 @@ import {Block} from "../block/block"
 	selector: "ui-notification-outlet",
 	directives: [Block],
 	template: `
-		<ui-block *ngFor="#message of messages"
+		<ui-block *ngFor="let message of messages"
 			[z]="2" 
 			[is]="message.is"
 			[class.incoming]="message.incoming"
