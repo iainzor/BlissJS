@@ -1,6 +1,6 @@
-import {Component, ElementRef, Input, Output, EventEmitter, OnChanges, forwardRef} from "angular2/core"
-import {CORE_DIRECTIVES} from "angular2/common"
-import {Router, RouterLink} from "angular2/router"
+import {Component, ElementRef, Input, Output, EventEmitter, OnChanges, forwardRef} from "@angular/core"
+import {CORE_DIRECTIVES} from "@angular/common"
+import {Router} from "@angular/router"
 import {NavInterface} from "./nav"
 import {Tooltip} from "../tooltip/tooltip"
 

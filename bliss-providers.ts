@@ -1,4 +1,4 @@
-import {provide} from "angular2/core"
+import {provide} from "@angular/core"
 import {Bliss} from "./bliss"
 import {Theme} from "./ui/theme"
 

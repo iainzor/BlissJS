@@ -1,6 +1,6 @@
 import "rxjs/add/operator/debounceTime"
-import {Component, Input, Output, EventEmitter, ElementRef} from "angular2/core"
-import {Control} from "angular2/common"
+import {Component, Input, Output, EventEmitter, ElementRef} from "@angular/core"
+import {Control} from "@angular/common"
 import {Block} from "../block/block"
 
 @Component({

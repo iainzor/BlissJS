@@ -1,5 +1,5 @@
-import {Component, Input, Output, EventEmitter, OnChanges} from "angular2/core"
-import {NgForm} from "angular2/common"
+import {Component, Input, Output, EventEmitter, OnChanges} from "@angular/core"
+import {NgForm} from "@angular/common"
 import {Block} from "../../ui/block/block"
 import {User} from "../user"
 import {UserService} from "../user-service"

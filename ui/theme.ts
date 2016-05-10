@@ -1,4 +1,4 @@
-import {Injectable, Input, OnChanges} from "angular2/core"
+import {Injectable, Input, OnChanges} from "@angular/core"
 import {Subscription, Subscriber, Observable, Observer} from "rxjs"
 
 @Injectable()

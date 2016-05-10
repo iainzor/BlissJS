@@ -1,6 +1,5 @@
-import {Component, Input, OnChanges} from "angular2/core"
-import {CORE_DIRECTIVES} from "angular2/common"
-import {Router, RouterLink} from "angular2/router"
+import {Component, Input, OnChanges} from "@angular/core"
+import {Router, ROUTER_DIRECTIVES} from "@angular/router"
 import {NavPageInterface, NavPage} from "./nav-page"
 
 @Component({
@@ -20,7 +19,7 @@ import {NavPageInterface, NavPage} from "./nav-page"
 			</template>
 		</section>
 	`,
-	directives: [CORE_DIRECTIVES, NavPage, RouterLink],
+	directives: [NavPage, ROUTER_DIRECTIVES],
 	styleUrls: [
 		"./bliss/ui/nav/nav.css"
 	]

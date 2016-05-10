@@ -1,5 +1,5 @@
-import {Component, ElementRef, ViewQuery, QueryList, OnChanges, OnInit, OnDestroy} from "angular2/core"
-import {NgIf} from "angular2/common"
+import {Component, ElementRef, ViewQuery, QueryList, OnChanges, OnInit, OnDestroy} from "@angular/core"
+import {NgIf} from "@angular/common"
 import {Tooltip} from "../tooltip/tooltip"
 import {Block} from "../block/block"
 import {Theme} from "../theme"

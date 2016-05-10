@@ -1,4 +1,4 @@
-import {Component, ElementRef} from "angular2/core"
+import {Component, ElementRef} from "@angular/core"
 import {NotifyService} from "./notify-service"
 import {MessageDefinition} from "./message-definition"
 import {Block} from "../block/block"

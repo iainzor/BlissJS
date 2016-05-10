@@ -1,5 +1,5 @@
-import {Component, Input, ElementRef, OnInit, OnDestroy, OnChanges} from "angular2/core"
-import {NgIf} from "angular2/common"
+import {Component, Input, ElementRef, OnInit, OnDestroy, OnChanges} from "@angular/core"
+import {NgIf} from "@angular/common"
 import {Layout} from "../layout/layout"
 import {LayoutSection} from "../layout/layout-section"
 

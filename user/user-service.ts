@@ -1,5 +1,5 @@
-import {Injectable} from "angular2/core"
-import {Http} from "angular2/http"
+import {Injectable} from "@angular/core"
+import {Http} from "@angular/http"
 import {User, UserInterface} from "./user"
 import {UserSession} from "./user-session"
 

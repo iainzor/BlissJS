@@ -1,6 +1,6 @@
 import "rxjs/add/operator/map"
-import {Input, Injectable} from "angular2/core"
-import {Http} from "angular2/http"
+import {Input, Injectable} from "@angular/core"
+import {Http} from "@angular/http"
 import {BlissConfig} from "./bliss-config"
 
 @Injectable()

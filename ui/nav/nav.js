@@ -1,4 +1,4 @@
-System.register(["angular2/core", "angular2/common", "angular2/router", "./nav-page"], function(exports_1, context_1) {
+System.register(["@angular/core", "@angular/router", "./nav-page"], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,15 +10,12 @@ System.register(["angular2/core", "angular2/common", "angular2/router", "./nav-p
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, common_1, router_1, nav_page_1;
+    var core_1, router_1, nav_page_1;
     var Nav;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
-            },
-            function (common_1_1) {
-                common_1 = common_1_1;
             },
             function (router_1_1) {
                 router_1 = router_1_1;
@@ -38,7 +35,7 @@ System.register(["angular2/core", "angular2/common", "angular2/router", "./nav-p
                     core_1.Component({
                         selector: "ui-nav",
                         template: "\n\t\t<section class=\"pages\">\n\t\t\t<template ngFor let-page [ngForOf]=\"nav?.pages\">\n\t\t\t\t<template [ngIf]=\"!page.is || page.is === 'link'\">\n\t\t\t\t\t<ui-nav-page \n\t\t\t\t\t\t[page]=\"page\"\n\t\t\t\t\t\t[routerLink]=\"[page.path]\">\n\t\t\t\t\t</ui-nav-page>\n\t\t\t\t</template>\n\t\t\t\t<template [ngIf]=\"page.is === 'spacer'\">\n\t\t\t\t\t<div class=\"spacer\"></div>\n\t\t\t\t</template>\n\t\t\t</template>\n\t\t</section>\n\t",
-                        directives: [common_1.CORE_DIRECTIVES, nav_page_1.NavPage, router_1.RouterLink],
+                        directives: [nav_page_1.NavPage, router_1.ROUTER_DIRECTIVES],
                         styleUrls: [
                             "./bliss/ui/nav/nav.css"
                         ]
