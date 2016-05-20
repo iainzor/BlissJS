@@ -8,8 +8,6 @@ export class Bliss
 {
 	@Input() url:string = "/app.json";
 	
-	private _configPromise:Promise<BlissConfig>;
-	
 	constructor(private _http:Http) {}
 	
 	load() : Promise<BlissConfig> {
