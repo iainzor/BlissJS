@@ -16,6 +16,8 @@
 	display: none;
 }
 
+:host(.is-active) { background-color: #00BCD4; color: #fff; }
+
 :host(.is-error) { background-color: #F44336; color: #fff; }
 
 :host(.is-info) { background-color: #78909C; color: #fff; }
@@ -24,7 +26,12 @@
 
 :host(.is-dark) { background-color: #212121; color: #fff; }
 	
-	:host(.is-dark) a { color: #fff; }
+	:host(.is-dark) a,
+	:host(.is-active) a,
+	:host(.is-info) a,
+	:host(.is-error) a,
+	:host(.is-success) a { color: inherit; }
+	
 	:host(.is-dark) .nav > li > a:hover { background-color: rgba(255,255,255,.1); }
 	:host(.is-dark) .nav > li > a.router-link-active,
 	:host(.is-dark) .nav > li.active > a { background-color: rgba(255,255,255,.25); }
