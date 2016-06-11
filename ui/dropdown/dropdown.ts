@@ -30,7 +30,7 @@ export class Dropdown
 {
 	private ignoreClick:boolean = false;
 	
-	@Input() arrow:boolean = true;
+	@Input() arrow:boolean = false;
 	@Input() arrowColor:string = "#fff";
 	@Input() position:string = "right";
 	

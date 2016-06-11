@@ -40,13 +40,10 @@ export class Fab implements OnChanges, OnInit, OnDestroy
 	left:number;
 	right:number;
 	
-	backgroundColor:string;
-	iconColor:string;
-	
-	constructor(private theme:Theme, private _elRef:ElementRef) {
-		this.backgroundColor = theme.accentBackgroundColor;
-		this.iconColor = theme.accentTextColor;
-	}
+	constructor(private theme:Theme, private _elRef:ElementRef) {}
+
+	get backgroundColor() : string { return this.theme.accentColor; }
+	get iconColor() : string { return this.theme.accentTextColor; }
 	
 	ngOnInit() {
 		this.position();

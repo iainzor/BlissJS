@@ -1,5 +1,13 @@
 :host {
 	display: flex;
+	flex-direction: row;
+	align-items: center;
+	cursor: pointer;
+}
+:host(.reverse) { flex-direction: row-reverse; }
+
+.switch {
+	display: flex;
 	position: relative;
 	width: 40px;
 	max-width: 40px;
@@ -7,18 +15,15 @@
 	flex-direction: column;
 	justify-content: center;
 }
-	:host .bar {
+	.switch > .bar {
 		margin: 0 3px;
 		height: 14px;
 		border-radius: 7px;
 		background-color: #939393;
 		transition: all .2s ease-in-out;
 	}
-	:host(.on) .bar {
-		background-color: #FFB74D;
-	}
 	
-	:host ui-block {
+	.switch > ui-block {
 		width: 20px;
 		height: 20px;
 		border-radius: 10px;
@@ -30,7 +35,10 @@
 		background-color: #fafafa;
 	}
 	
-	:host(.on) ui-block {
+	:host(.on) .switch > ui-block {
 		transform: translateX(20px);
-		background-color: #ff9800;
 	}
+
+.content {
+	flex-grow: 1;
+}
