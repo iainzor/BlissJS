@@ -2,18 +2,26 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	position: relative;
 }
-
+	:host.hidden {
+		display: none !important;
+	}
 	:host > ui-block {
-		width: 50px;
-		height: 50px;
-		background: #fff url("./bliss/ui/spinner/spinner.gif") 50% 50% no-repeat;
-		border-radius: 50%;
+		background: transparent;
+		/*border-radius: 50%;*/
 		visibility: hidden;
 		transform: scale(0);
 		opacity: 0;
 		transition: all .3s ease-in-out;
-		margin: 0;
+		/*margin: 0;*/
+		box-shadow: none !important;
+		background: red;
+		position: absolute;
+		left: 50%;
+		margin-left: -42px;
+		top: 50%;
+		margin-top: -42px;
 	}
 
 	:host(.visible) > ui-block {
