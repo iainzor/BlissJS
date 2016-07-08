@@ -1,28 +1,26 @@
 :host {
 	display: flex;
-	align-items: center;
+	min-height: 76px;
+	flex-direction: column;
+	align-items: stretch;
 	justify-content: center;
-	position: relative;
+	height: 100%;
 }
-	:host.hidden {
-		display: none !important;
-	}
+
 	:host > ui-block {
 		background: transparent;
-		/*border-radius: 50%;*/
 		visibility: hidden;
 		transform: scale(0);
 		opacity: 0;
 		transition: all .3s ease-in-out;
-		/*margin: 0;*/
 		box-shadow: none !important;
-		background: red;
-		position: absolute;
-		left: 50%;
-		margin-left: -42px;
-		top: 50%;
-		margin-top: -42px;
+		margin-bottom: 0;
+		flex-grow: 1;
 	}
+
+		:host > ui-block > svg {
+			margin: auto;
+		}
 
 	:host(.visible) > ui-block {
 		visibility: visible;
