@@ -1,3 +1,5 @@
+<ui-spinner [visible]="loading" width="30" height="30"></ui-spinner>
+
 <input #queryInput
 	type="text" 
 	class="form-control" 
@@ -7,8 +9,8 @@
 	(focus)="onFocus()"
 	(blur)="onBlur()">
 
-<autocomplete-results *ngIf="results" 
+<autocomplete-results *ngIf="resultList" 
 	[input]="queryInput" 
-	[results]="results" 
+	[results]="resultList" 
 	(resultSelect)="onResultSelect($event)">
 </autocomplete-results>

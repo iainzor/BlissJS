@@ -5,6 +5,7 @@ import {FormControl, FormControlDirective} from "@angular/forms"
 import {AutoCompleteResult} from "./autocomplete-result"
 import {AutoCompleteResultsComponent} from "./autocomplete-results.component"
 import {Block} from "../block/block"
+import {Spinner} from "../spinner/spinner"
 
 @Component({
 	selector: "autocomplete",
@@ -13,7 +14,8 @@ import {Block} from "../block/block"
 	directives: [
 		FormControlDirective,
 		AutoCompleteResultsComponent,
-		Block
+		Block,
+		Spinner
 	],
 	host: {
 		"[class.focused]": "focused"
@@ -24,12 +26,21 @@ export class AutoCompleteComponent implements OnInit
 	query:string;
 	queryControl:FormControl = new FormControl();
 	focused:boolean = false;
+	loading:boolean = false;
+	resultList:AutoCompleteResult[];
 
 	@Input() placeholder:string;
-	@Input() results:AutoCompleteResult[];
 	@Output() queryChange:EventEmitter<string> = new EventEmitter<string>();
 	@Output() resultSelect:EventEmitter<AutoCompleteResult> = new EventEmitter<AutoCompleteResult>();
 	
+	@Input() set results(results:AutoCompleteResult[]) {
+		this.resultList = results;
+		
+		window.setTimeout(() => {
+			this.loading = false;
+		}, 100);
+	}
+
 	ngOnInit() {
 		this.queryControl
 			.valueChanges
@@ -43,6 +54,7 @@ export class AutoCompleteComponent implements OnInit
 		if (!this.query) {
 			this.results = null;
 		} else {
+			this.loading = true;
 			this.queryChange.emit(this.query);
 		}
 	}

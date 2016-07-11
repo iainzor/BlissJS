@@ -1,13 +1,11 @@
 :host {
 	display: flex;
-	min-height: 76px;
 	flex-direction: column;
 	align-items: stretch;
 	justify-content: center;
-	height: 100%;
 }
 
-	:host > ui-block {
+	:host > svg {
 		background: transparent;
 		visibility: hidden;
 		transform: scale(0);
@@ -18,11 +16,7 @@
 		flex-grow: 1;
 	}
 
-		:host > ui-block > svg {
-			margin: auto;
-		}
-
-	:host(.visible) > ui-block {
+	:host(.visible) > svg {
 		visibility: visible;
 		transform: scale(1);
 		opacity: 1;
