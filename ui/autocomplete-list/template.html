@@ -2,7 +2,7 @@
 	<input 	type="text"
 			class="form-control" 
 			[(ngModel)]="term"
-			[ngFormControl]="termControl"
+			[formControl]="termControl"
 			[attr.placeholder]="placeholder"
 			(keydown)="onKeyDown($event)"
 			(focus)="onFocus()"

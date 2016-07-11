@@ -1,24 +1,24 @@
 import "rxjs/add/operator/debounceTime"
 import {Component, Input, Output, EventEmitter, ElementRef} from "@angular/core"
-import {Control} from "@angular/common"
+import {FormControl, FormControlDirective} from "@angular/forms"
 import {Block} from "../block/block"
 
 @Component({
 	selector: "autocomplete-list",
 	templateUrl: "./bliss/ui/autocomplete-list/template.html",
 	styleUrls: ["./bliss/ui/autocomplete-list/styles.css"],
-	directives: [Block],
+	directives: [Block, FormControlDirective],
 	host: {
 		"[class.focused]": "isFocused"
 	}
 })
-export class AutocompleteList
+export class AutocompleteListComponent
 {
 	private _resultMap = {};
 	private _results:any[];
 	
 	term:string;
-	termControl:Control = new Control();
+	termControl:FormControl = new FormControl();
 	selected:number = 0;
 	isFocused:boolean = false;
 	

@@ -1,0 +1,11 @@
+<ui-block is="dark" z="2" class="results">
+	<section compact>
+		<ul class="nav nav-pills nav-stacked">
+			<li *ngFor="let result of results; let i = index;" class="nav-item">
+				<a href="#" class="nav-link" [class.active]="i === active">
+					{{result.label}}
+				</a>
+			</li>
+		</ul>
+	</section>
+</ui-block>

@@ -1,3 +1,4 @@
+/* Base block styles */
 :host {
 	display: flex;
 	position: relative;
@@ -8,22 +9,75 @@
 	padding: 0;
 	transition: all .3s ease-in-out;
 }
+	:host > section,
+	:host > header,
+	:host > footer {
+		border-bottom: 1px solid rgba(0,0,0,.1);
+		padding: 20px;
+	}
+
+	:host > section:first-of-type { flex-grow: 1; }
+
+	:host > :first-child {
+		border-top-left-radius: 3px;
+		border-top-right-radius: 3px;
+	}
+	:host > :last-child {
+		border-bottom: none;
+		border-bottom-left-radius: 3px;
+		border-bottom-right-radius: 3px;
+	}
+
+	:host > [compact] { padding: 10px; }
+	:host > [short] { padding-top: 10px; padding-bottom: 10px; }
+
+
+
+/* Single row block */
+:host[row] {
+	flex-direction: row;
+	align-items: stretch;
+}
+	:host[row] > section,
+	:host[row] > header,
+	:host[row] > footer {
+		border-bottom: none;
+		border-right: 1px solid rgba(0,0,0,.1);
+	}
+
+	:host[row][v-centered] > section,
+	:host[row][v-centered] > header,
+	:host[row][v-centered] > footer {
+		display: flex;
+		align-items: center;
+	}
+	
+	:host[row] > :first-child {
+		border-top-right-radius: 0;
+		border-bottom-left-radius: 3px;
+	}
+
+	:host[row] > :last-child {
+		border-right: none;
+		border-bottom-left-radius: 0;
+		border-bottom-right-radius: 3px;
+	}
+
+
+/* Misc Block Styles */
 :host[plain] {
 	background-color: transparent;
 	box-shadow: none !important;
 }
-:host[hidden] {
-	display: none;
-}
+:host[hidden] { display: none; }
+	
+	
 
+/* Block Colors */
 :host(.is-active) { background-color: #00BCD4; color: #fff; }
-
 :host(.is-error) { background-color: #F44336; color: #fff; }
-
 :host(.is-info) { background-color: #78909C; color: #fff; }
-
 :host(.is-success) { background-color: #8BC34A; color: #fff; }
-
 :host(.is-dark) { background-color: #212121; color: #fff; }
 	
 	:host(.is-dark) a,
@@ -36,33 +90,9 @@
 	:host(.is-dark) .nav > li > a.router-link-active,
 	:host(.is-dark) .nav > li.active > a { background-color: rgba(255,255,255,.25); }
 
-	:host > section,
-	:host > header,
-	:host > footer {
-		border-bottom: 1px solid rgba(0,0,0,.1);
-		padding: 20px;
-	}
-	
-	:host > :first-child {
-		border-top-left-radius: 3px;
-		border-top-right-radius: 3px;
-	}
-	:host > :last-child {
-		border-bottom: 0;
-		border-bottom-left-radius: 3px;
-		border-bottom-right-radius: 3px;
-	}
-	
-	:host > [compact] {
-		padding: 10px;
-	}
-	
-	:host > [short] {
-		padding-top: 10px;
-		padding-bottom: 10px;
-	}
-	
-	
+
+
+/* Block Shadows */
 :host(.z-1) {
 	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
 				0 1px 5px 0 rgba(0, 0, 0, 0.12),
@@ -90,6 +120,7 @@
 }
 
 
+/* Tables */
 :host > table > tbody > tr > td,
 :host > table > thead > tr > th { padding: 10px; }
 

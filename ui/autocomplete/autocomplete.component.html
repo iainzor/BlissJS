@@ -1,0 +1,14 @@
+<input #queryInput
+	type="text" 
+	class="form-control" 
+	placeholder="{{placeholder}}" 
+	[(ngModel)]="query" 
+	[formControl]="queryControl"
+	(focus)="onFocus()"
+	(blur)="onBlur()">
+
+<autocomplete-results *ngIf="results" 
+	[input]="queryInput" 
+	[results]="results" 
+	(resultSelect)="onResultSelect($event)">
+</autocomplete-results>
