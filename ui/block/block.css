@@ -47,9 +47,7 @@
 	:host[row][v-centered] > section,
 	:host[row][v-centered] > header,
 	:host[row][v-centered] > footer {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
+		align-self: center;
 	}
 	
 	:host[row] > :first-child {
