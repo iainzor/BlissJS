@@ -42,14 +42,14 @@
 	:host[row] > header,
 	:host[row] > footer {
 		border-bottom: none;
-		border-right: 1px solid rgba(0,0,0,.1);
 	}
 
 	:host[row][v-centered] > section,
 	:host[row][v-centered] > header,
 	:host[row][v-centered] > footer {
 		display: flex;
-		align-items: center;
+		flex-direction: column;
+		justify-content: center;
 	}
 	
 	:host[row] > :first-child {
