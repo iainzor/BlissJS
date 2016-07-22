@@ -2,7 +2,7 @@
 	<section compact>
 		<ul class="nav nav-pills nav-stacked">
 			<li *ngFor="let result of results; let i = index;" class="nav-item">
-				<a href="#" class="nav-link" [class.active]="i === active">
+				<a href="#" class="nav-link" [class.active]="i === active" (click)="onResultClick($event, result)">
 					{{result.label}}
 				</a>
 			</li>

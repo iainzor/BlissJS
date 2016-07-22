@@ -14,7 +14,11 @@
 	height: 40px;
 	flex-direction: column;
 	justify-content: center;
+	flex-shrink: 0;
+	margin-right: 10px;
 }
+:host(.reverse) .switch { margin-right: 0; margin-left: 10px; }
+
 	.switch > .bar {
 		margin: 0 3px;
 		height: 14px;
@@ -41,4 +45,6 @@
 
 .content {
 	flex-grow: 1;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }

@@ -54,6 +54,11 @@ export class AutoCompleteResultsComponent implements OnInit, OnDestroy, EventLis
 		}
 	}
 
+	onResultClick(e:MouseEvent, result:AutoCompleteResult) {
+		e.preventDefault();
+		this.resultSelect.emit(result);
+	}
+
 	step(amount:number) {
 		let maxIndex = this.results.length - 1;
 		this.active += amount;

@@ -119,6 +119,9 @@
 
 
 /* Tables */
+:host > table { margin: 5px 0; border-bottom: 1px solid rgba(0,0,0,.1); }
+:host > table:last-child { border-bottom: none; }
+
 :host > table > tbody > tr > td,
 :host > table > thead > tr > th { padding: 10px; }
 
@@ -128,6 +131,7 @@
 :host > table td:last-child,
 :host > table th:last-child { padding-right: 20px; }
 
-:host > table tbody:first-child > tr:first-child > td {
+:host > table tbody:first-child > tr:first-child > td,
+:host > table thead:first-child > tr:first-child > th {
 	border-top: none;
-} 
+}
